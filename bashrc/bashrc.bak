@@ -9,6 +9,9 @@ export LC_ALL=C
 export LANG=fr_FR.UTF-8
 
 #CUSTOM
+export PATH=$PATH:/home/antoroll/workspace/github/utils/bin
+export RPATH=/home/antoroll/workspace/github/utils/R
+
 
 
 # pour le jdk JAVA

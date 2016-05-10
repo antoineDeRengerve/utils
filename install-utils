@@ -1,0 +1,6 @@
+
+# install bashrc 
+cd bashrc
+./install
+cd - > /dev/null
+

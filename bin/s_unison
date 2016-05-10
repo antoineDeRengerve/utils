@@ -1,0 +1,74 @@
+#!/bin/bash
+
+## OPTIONS
+OPTION_FLAG="-perms 0  -dontchmod -fat"
+
+
+unison_bin="$HOME/bin/unison-2.40"
+
+if [[ $# -le 1 ]]
+then
+	echo "not enough params"
+	echo "s_unison help"
+	exit 1
+fi
+
+if [[ "$1" = "help" ]]
+then
+    echo -e " Available host : \n idefix \n hogun"
+fi
+
+
+if [[ $# -eq 2 ]]
+then
+	echo "2 param $1 $2" 
+else if [[ $# -eq 4 ]]
+then
+	echo "4 param $1 $2 $3 $4 "
+else
+	echo "incorrect number of params"
+fi
+fi
+
+
+if [[ "$1" = "idefix" ]]
+then
+    host1="ssh://antoroll@idefix.ensea.fr//users/link/antoroll/"
+    PATH1="$host1$2"
+    PATH2="$2"
+    host2="/home/antoroll/"
+    VERSION="2.32"
+else if [[ "$1" = "hogun" ]]
+then
+    host1="ssh://antoroll@hogun.ensea.fr//users/link/antoroll/"
+    PATHNAME="$2"
+    VERSION="2.4"
+    host2="/home/antoroll/"
+else if [[ "$1" = "home" ]]
+then
+    host1="ssh://antoroll@hogun.ensea.fr:7722//users/link/antoroll/"
+    PATHNAME="$2"
+    VERSION="2.4"
+    host2="/home/antoroll"
+    OPTION_FLAG="-perms 0 -dontchmod "
+else if [[ "$1" = "Dhome" ]]
+then
+    host1="ssh://antoroll@hogun.ensea.fr:7722//users/link/antoroll/"
+    PATHNAME="$2"
+    VERSION="2.4"
+    host2="/D/"
+    OPTION_FLAG="-perms 0 -dontchmod "
+else
+    host1="$1"
+    host2="$2"    
+    PATHNAME="."
+fi
+fi
+fi
+fi
+
+echo "$unison_bin $host1 $host2 -path $PATHNAME ${OPTION_FLAG}"
+
+#$unison_bin $PATH1 $PATH2 -perms ${PERMS_FLAG}
+
+$unison_bin $host1 $host2 -path $PATHNAME ${OPTION_FLAG}

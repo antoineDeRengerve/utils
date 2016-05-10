@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cp $HOME/.bashrc ./bashrc.bak
+cp bashrc $HOME/.bashrc
+
+cd ..;CURRPATH=`pwd`; cd - > /dev/null
+CUSTOM="#CUSTOM\n"
+CUSTOM="${CUSTOM}export PATH=\$PATH:${CURRPATH//\//\\\/}\/bin\n"
+CUSTOM="${CUSTOM}export RPATH=${CURRPATH//\//\\\/}\/R\n"
+
+sed -i "s/#CUSTOM/$CUSTOM/g" $HOME/.bashrc
+
