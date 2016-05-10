@@ -1,0 +1,24 @@
+[user]
+	name = antoine.derengerve
+	email = antoine.derengerve@partnering.fr
+[push]
+	default = simple
+[core]
+	editor = vim
+	excludesfile = /home/antoroll/.gitignore_global
+[alias]
+	amend = commit --amend
+	st = status
+	oneline = log --pretty=oneline --abbrev-commit --graph --decorate
+	last = log -1 HEAD
+	co = checkout
+	ci = commit
+	br = branch
+	brv = branch -vv
+	st = status
+    	stt = diff --name-status
+	dic = diff --cached	
+	diffstat = diff --stat
+	unstage = reset HEAD –
+	diffmeld = difftool –tool=mel
+
