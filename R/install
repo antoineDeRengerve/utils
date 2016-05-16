@@ -1,0 +1,2 @@
+sudo Rscript install-packages
+echo "R SETTING DONE"

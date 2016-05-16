@@ -5,6 +5,7 @@ cp bashrc $HOME/.bashrc
 
 cd ..;CURRPATH=`pwd`; cd - > /dev/null
 
+mkdir -p $HOME/.bashrc.d
 BASHUTIL=$HOME/.bashrc.d/bashrc.utils
 echo "" > $BASHUTIL
 echo "export PATH=\$PATH:${CURRPATH}/bin:${CURRPATH}/R" >> $BASHUTIL

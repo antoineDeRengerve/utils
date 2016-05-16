@@ -1,3 +1,4 @@
 cp $HOME/.gitconfig ./gitconfig.bak
 cp gitconfig $HOME/.gitconfig
 
+echo "GIT SETTING DONE"
