@@ -13,8 +13,9 @@ if (length(args)<=1) {
   # default output file
   args[2] = "out"
 }
+
 if ( args[1] == "--help") {
-  message("rhelp to read the help")
+  message("arg1")
 } 
 
 load(args[1])
@@ -26,6 +27,12 @@ if(!exists("data_out"))
 data_in = data_out
 
 
+# load title, x, y
+title = "Battery test"
+x_name = "time"
+y_name = "V/A/Ah/degC/%"
+
+
 # display
 x = data_in[,1]
 x
@@ -35,11 +42,21 @@ y
 nb_col=dim(y)[2]
 
 # melt data into long-format
-DT = data_in
+DT = melt(data_in, id.vars=1,variable.name="measures",value.name="y")
+#, 
+#                measure.vars = c("dob_child1", "dob_child2", "dob_child3"))
+DT
 
+names(DT)[1]="x"
 
+p <- ggplot(data=DT, aes(x=x, y=y, group=measures, colour=measures, shape=measures)) 
+p <- p + geom_point(size=4)
+p <- p + ggtitle(title) 
+p <- p + geom_line(size=2)
+#p <- p + geom_smooth()
+p <- p + theme(axis.text.x = element_text(angle = 60, hjust = 1))
 
-ggsave(plot=p, file="kinetics_plot_01.png")
+ggsave(plot=p, file="output.png",width=10,height=6)
 
 q()
 
