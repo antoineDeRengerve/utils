@@ -1,2 +1,2 @@
 sudo apt-get install vim vlc thunderbird git screen emacs terminator chromium-browser r-base r-cran-ggplot2 
-
+echo "DEBIAN PACKAGES INSTALL DONE"
