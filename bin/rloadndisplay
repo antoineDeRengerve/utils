@@ -1,1 +1,0 @@
-Rscript ${RPATH}/load-and-display $@

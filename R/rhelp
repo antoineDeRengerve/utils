@@ -1,0 +1,7 @@
+#!/usr/bin/env Rscript
+message("This is the help")
+message("rload \t\t- load csv file")
+message("rhelp \t\t- the current help")
+message("rdisplay \t- display saved file")
+
+

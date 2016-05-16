@@ -1,0 +1,63 @@
+#!/usr/bin/env Rscript
+library(data.table)
+library(ggplot2)
+
+args = commandArgs(trailingOnly=TRUE)
+
+# test if there is at least one argument: if not, return an error
+if (length(args)==0) {
+  args[1] = "data_out.RData"
+
+} 
+if (length(args)<=1) {
+  # default output file
+  args[2] = "out"
+}
+if ( args[1] == "--help") {
+  message("rhelp to read the help")
+} 
+
+load(args[1])
+if(!exists("data_out"))
+{
+  ls()
+  stop(paste("data_out does not exist in loaded file: ",args[1]))
+}
+data_in = data_out
+
+
+# display
+x = data_in[,1]
+x
+y = data_in[,-1]
+y
+
+nb_col=dim(y)[2]
+
+# melt data into long-format
+DT = data_in
+
+
+
+ggsave(plot=p, file="kinetics_plot_01.png")
+
+q()
+
+g_range <- range(0, y)
+message(g_range)
+
+jpeg(paste(args[2],".jpg"),1024,720)
+
+plot(x, y[,1], type="l", col=palette()[1],ylim=g_range)
+par(new=TRUE)
+for(i in 2:nb_col) {
+  lines(x, y[,i], type="o", col=palette()[i])
+}
+
+#create a title with a red, bold/italic font
+title(main="Battery", col.main="blue", font.main=124)
+
+
+
+
+
