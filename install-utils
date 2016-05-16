@@ -1,4 +1,14 @@
 
+#install deb packages
+cd install
+./deb_install
+cd - > /dev/null
+
+#install git
+cd git
+./install
+cd - > /dev/null
+
 # install bashrc 
 cd bashrc
 ./install

@@ -4,9 +4,12 @@ cp $HOME/.bashrc ./bashrc.bak
 cp bashrc $HOME/.bashrc
 
 cd ..;CURRPATH=`pwd`; cd - > /dev/null
-CUSTOM="#CUSTOM\n"
-CUSTOM="${CUSTOM}export PATH=\$PATH:${CURRPATH//\//\\\/}\/bin\n"
-CUSTOM="${CUSTOM}export RPATH=${CURRPATH//\//\\\/}\/R\n"
 
-sed -i "s/#CUSTOM/$CUSTOM/g" $HOME/.bashrc
+BASHUTIL=$HOME/.bashrc.d/bashrc.utils
+echo "" > $BASHUTIL
+echo "export PATH=\$PATH:${CURRPATH}/bin:${CURRPATH}/R" >> $BASHUTIL
+chmod 755 $HOME/.bashrc.d/bashrc.utils
+
+
+echo "BASHRC SETTING DONE"
 

@@ -19,6 +19,6 @@
     	stt = diff --name-status
 	dic = diff --cached	
 	diffstat = diff --stat
-	unstage = reset HEAD –
-	diffmeld = difftool –tool=mel
+	unstage = reset HEAD -- 
+	diffmeld = difftool --tool=meld
 
