@@ -19,3 +19,9 @@ cd R
 ./install
 cd - > /dev/null
 
+
+# install emacs
+cd emacs
+./install
+cd - > /dev/null
+

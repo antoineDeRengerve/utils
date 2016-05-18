@@ -1,0 +1,5 @@
+mkdir ~/emacs.d
+cp init.el ~/.emacs.d/
+
+echo "EMACS SETTING DONE"
+
