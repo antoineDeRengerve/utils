@@ -5,8 +5,12 @@
 export PATH=$PATH:$HOME/bin
 export EDITOR=vim
 export BROWSER=firefox
-export LC_ALL=C
-export LANG=fr_FR.UTF-8
+export LC_ALL=
+export LC_CTYPE=en_US.UTF-8
+export LC_NUMERIC=C
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LOCALE=fr_FR.UTF-8
 
 #CUSTOM
 if [ -d $HOME/.bashrc.d ]
@@ -35,9 +39,9 @@ fi
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -105,13 +109,14 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    alias make='colormake'
+    alias gcc='colorgcc'
 fi
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias ssh='ssh -X'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
@@ -119,6 +124,10 @@ alias s='cd ..'
 alias d='ls'
 alias p='cd -'
 alias sh='bash'
+alias e='emacs -fs'
+alias eb='emacs -nw'
+alias ec='emacsclient -qc -a ""'
+alias t='terminator -f'
 
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -126,9 +135,7 @@ alias sh='bash'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-#
-# Ajout perso (Lolo)
-#
+# Better bash look
 if [ `id -u` = 0 ]; then
 	PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\W \[\033[01;31m\]> \[\033[00m\]"
 else

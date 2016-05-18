@@ -1,4 +1,5 @@
 ## ignored files
 
 **/*.bak
+**/*.old
 
