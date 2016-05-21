@@ -15,7 +15,9 @@ export LOCALE=fr_FR.UTF-8
 #CUSTOM
 if [ -d $HOME/.bashrc.d ]
 then
-        source `ls $HOME/.bashrc.d/*` # execute custom bashrc files
+        for i in $( ls $HOME/.bashrc.d/* ); do
+		source $i # execute custom bashrc files
+	done
 fi
 
 # pour le jdk JAVA

@@ -6,11 +6,11 @@ args = commandArgs(trailingOnly=TRUE)
 # test if there is at least one argument: if not, return an error
 if (length(args)==0) {
   stop("At least one argument must be supplied (input file).n", call.=FALSE)
-} 
+}
 if (length(args)<=1) {
   # default output file
   args[2] = "data_out.RData"
-} 
+}
 if (length(args)<=2) {
   head = FALSE
 }
@@ -21,15 +21,53 @@ if ( args[1] == "--help") {
   q()
 }
 
-head
 
-data_out = fread("test.txt")
+data_out = fread(args[1])
 #data_out = read.csv(file="test.txt",header=head)
 data_out
 
 
-wd = getwd()
-print(wd)
+# wd = getwd()
+# print(wd)
+
+# check if [,1] is potentially a timestamp
+time <- strptime(data_out$V1,"%Y-%m-%dT%H:%M:%S%z")
+time = as.POSIXct(time);
+time = time - time[1]
+
+print("POSIX")
+
+len = length(time)
+
+time3 = sapply(seq_along(time), function(i){
+	  if(i>1 && time[i]>time[i-1]+2) {
+	    print("CORRECTION")
+		print(time[i])
+	  	time[i:len] = time[i:len]- (time[i]-time[i-1])
+		print("DONE")
+	  }
+	  time[i]
+})
+
+time
+time3
+
+q()
+#####
+
+for(i in 2:len) {
+	  if(time[i]>time[i-1]+2) {
+	    print("CORRECTION")
+		print(time[i])
+	  	time[i:len] = time[i:len]- (time[i]-time[i-1])
+		print("DONE")
+	  }
+}
+
+data_out$time = time
 
 save(data_out,file=args[2])
 
+write.csv(data_out, file = "data_out.csv")
+
+warnings()
