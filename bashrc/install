@@ -5,12 +5,15 @@ cp bashrc $HOME/.bashrc
 
 cd ..;CURRPATH=`pwd`; cd - > /dev/null
 
-mkdir -p $HOME/.bashrc.d
-BASHUTIL=$HOME/.bashrc.d/bashrc.utils
+BASHDIR=$HOME/.bashrc.d
+mkdir -p $BASHDIR 
+BASHUTIL=$BASHDIR/bashrc.utils
 echo "" > $BASHUTIL
 echo "export PATH=\$PATH:${CURRPATH}/bin:${CURRPATH}/R" >> $BASHUTIL
-chmod 755 $HOME/.bashrc.d/bashrc.utils
+chmod 755 $BASHUTIL
 
+cp git-completion.bash $BASHDIR
+chmod 755 $BASHDIR/git-completion.bash
 
 echo "BASHRC SETTING DONE"
 
