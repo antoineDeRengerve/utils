@@ -1,0 +1,114 @@
+#!/usr/bin/env Rscript
+library(data.table)
+
+args = commandArgs(trailingOnly=TRUE)
+
+# test if there is at least one argument: if not, return an error
+if (length(args)==0) {
+  stop("At least one argument must be supplied (input file).n", call.=FALSE)
+}
+if (length(args)<=1) {
+  # default output file
+  args[2] = "data_out.RData"
+}
+if (length(args)<=2) {
+  head = FALSE
+}
+if ( args[1] == "--help") {
+  message("arg1: input file name")
+  message("arg2: output file name (default: data_out.RData)")
+  message("arg3: header flag (default: FALSE)")
+  q()
+}
+
+
+data_out = fread(args[1])
+#data_out = read.csv(file="test.txt",header=head)
+#data_out
+
+
+# wd = getwd()
+# print(wd)
+
+# check if [,1] is potentially a timestamp
+time <- strptime(data_out$time,"%Y-%m-%dT%H:%M:%S%z")
+#print(time)
+time = as.POSIXct(time);
+time = time - time[1]
+
+len = length(time)
+
+time3 = sapply(seq_along(time), function(i){
+	  if(i>1 && time[i]>time[i-1]+2) {
+	    print("CORRECTION")
+		print(time[i])
+	  	time[i:len] = time[i:len]- (time[i]-time[i-1])
+		print("DONE")
+	  }
+	  time[i]
+})
+
+
+
+#q()
+#####
+
+#for(i in 2:len) {
+#	  if(time[i]>time[i-1]+2) {
+#	    print("CORRECTION")
+#		print(time[i])
+#	  	time[i:len] = time[i:len]- (time[i]-time[i-1])
+#		print("DONE")
+#	  }
+#}
+
+data_out$time = time
+
+
+save(data_out,file=args[2])
+
+write.csv(data_out, file = "data_out.csv")
+
+#dim(data_out)
+len=dim(data_out)[2];
+#len
+#data_out[1,1]
+drop=NULL
+for(i in 1:len) {
+#  print(data_out[[i]][1])
+#  message("marco")
+  if(data_out[[i]][1]=='A'){
+#    print(drop)
+#    print(length(drop))
+    if(length(drop)>0) {
+      drop = c(drop, i)  #names(data_out)[i])
+    }
+    else {
+      drop= i #names(data_out)[i]
+    }
+#   message("polo")
+  }
+}
+if(length(drop)) {
+	data_out=subset(data_out,select=-drop,drop=true)
+}
+data_out=subset(data_out,select=-c(1,time),drop=true)
+
+#data_out
+message("Mean")
+avg=colMeans(data_out)
+print(avg)
+message("Min")
+min_=apply(data_out,2,min)
+print(min_)
+message("Max")
+max_=apply(data_out,2,max)
+print(max_)
+message("StdDev")
+sd_=apply(data_out,2,sd)
+print(sd_)
+
+
+
+
+#warnings()
