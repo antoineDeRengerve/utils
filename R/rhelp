@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 message("This is the help")
-message("rload \t\t- load csv file")
+message("rload \t\t- load csv file. There can be a header. Time must have the following format : YYYY-MM-DDTHH:MM:SS+z, like 2016-07-26T01:30:04+0200")
+message("rload2 \t\t- load csv file. There can be a header. Time must have the following format : YYYY-MM-DDTHH:MM:SS+z, like 2016-07-26T01:30:04+0200")
 message("rhelp \t\t- the current help")
 message("rdisplay \t- display saved file")
 
