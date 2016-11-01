@@ -1,6 +1,7 @@
 sudo apt-get install vim vlc thunderbird git screen emacs terminator chromium-browser r-base r-cran-ggplot2 colorgcc colormake xclip
-sudo apt-get install adobereader-enu:i386 arduino arduino-core arduino-mk audacity avrdude blender bzr cmake coriander doxygen freecad g++ ganttproject geany gimp gnome-panel gnome-tweak-tool gnuplot indicator-multiload inkscape kicad libreoffice master-pdf-editor3 meld minicom mplayer nmap npm okular openshot openssh-server owncloud-client planner postgresql ps2eps python-pip recordmydesktop schroot scilab sqlite3 ssh subversion synaptic teamviewer:i386
-sudo apt-get install tex-common tex-gyre texlive-base texlive-fonts-recommended-doc texlive-lang-french texlive-latex-base texlive-latex-base-doc  texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex  texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc tickets-viewer
+sudo apt-get install arduino arduino-core arduino-mk audacity avrdude blender bzr cmake coriander doxygen freecad g++ geany gimp gnome-panel gnome-tweak-tool gnuplot indicator-multiload inkscape kicad libreoffice meld minicom mplayer nmap npm okular openshot openssh-server owncloud-client planner postgresql ps2eps python-pip recordmydesktop schroot scilab sqlite3 ssh subversion synaptic
+sudo apt-get install tex-common tex-gyre texlive-base texlive-fonts-recommended-doc texlive-lang-french texlive-latex-base texlive-latex-base-doc  texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex  texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc 
 sudo apt-get install ttf-bitstream-vera ttf-dejavu ttf-dejavu-core ttf-dejavu-extra ttf-freefont ttf-lyx ttf-mscorefonts-installer ttf-wqy-microhei
-sudo apt-get install unetbootin unrar valgrind velocity wireshark xmind zim
+sudo apt-get install unetbootin unrar valgrind velocity wireshark zim
+# TODO install external packages : xmind, master-pdf-editor, adobe-reader, ganttproject, team-viewer
 echo "DEBIAN PACKAGES INSTALL DONE"
