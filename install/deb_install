@@ -5,3 +5,10 @@ sudo apt-get install ttf-bitstream-vera ttf-dejavu ttf-dejavu-core ttf-dejavu-ex
 sudo apt-get install unetbootin unrar valgrind velocity wireshark zim
 # TODO install external packages : xmind, master-pdf-editor, adobe-reader, ganttproject, team-viewer
 echo "DEBIAN PACKAGES INSTALL DONE"
+
+echo "Config ZIM"
+sudo apt-get install python-gtksourceview2
+sudo apt-get install python-gtkspellcheck python-gtkspell
+
+echo "Configure groups"
+sudo usermod -a -G dialout antoroll # default username is antoroll
