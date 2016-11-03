@@ -22,30 +22,32 @@ if ( args[1] == "--help") {
 }
 
 
-data_out = fread(args[1])
+head=TRUE
+data_out = fread(args[1], header=head)
 #data_out = read.csv(file="test.txt",header=head)
 data_out
 
+print(data_out)
 
 # wd = getwd()
 # print(wd)
 
 # check if [,1] is potentially a timestamp
-time <- strptime(data_out$V1,"%Y-%m-%dT%H:%M:%S%z")
-print(time)
-time = as.POSIXct(time);
-time = time - time[1]
+time2 <- strptime(data_out$time,"%Y-%m-%dT%H:%M:%S%z")
+print(time2)
+time2 = as.POSIXct(time2);
+time2 = time2 - time2[1]
 
-len = length(time)
+len = length(time2)
 
-time3 = sapply(seq_along(time), function(i){
-	  if(i>1 && time[i]>time[i-1]+2) {
+time3 = sapply(seq_along(time2), function(i){
+	  if(i>1 && time2[i]>time2[i-1]+2) {
 	    print("CORRECTION")
-		print(time[i])
-	  	time[i:len] = time[i:len]- (time[i]-time[i-1])
+		print(time2[i])
+	  	time2[i:len] = time2[i:len]- (time2[i]-time2[i-1])
 		print("DONE")
 	  }
-	  time[i]
+	  time2[i]
 })
 
 
@@ -54,15 +56,15 @@ time3 = sapply(seq_along(time), function(i){
 #####
 
 #for(i in 2:len) {
-#	  if(time[i]>time[i-1]+2) {
+#	  if(time2[i]>time2[i-1]+2) {
 #	    print("CORRECTION")
-#		print(time[i])
-#	  	time[i:len] = time[i:len]- (time[i]-time[i-1])
+#		print(time2[i])
+#	  	time2[i:len] = time2[i:len]- (time2[i]-time2[i-1])
 #		print("DONE")
 #	  }
 #}
 
-data_out$time = time
+data_out$time2 = time2
 
 
 save(data_out,file=args[2])
@@ -90,10 +92,13 @@ for(i in 1:len) {
   }
 }
 
-data_out=subset(data_out,select=-drop,drop=true)
-data_out=subset(data_out,select=-c(1,time),drop=true)
+# drop data with non numerical values
+if ( !is.null(drop) ) {
+		data_out=subset(data_out,select=-drop,drop=true)
+}
+data_out=subset(data_out,select=-c(1,time2),drop=true)
 
-#print(data_out)
+print(data_out)
 message("Mean")
 avg=colMeans(data_out)
 print(avg)
