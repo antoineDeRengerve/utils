@@ -336,6 +336,8 @@
 ;; adds highlighting of some Ecma built-in properties. * 3 adds
 ;; highlighting of many Ecma built-in functions.
 (setq js2-highlight-level 3)
+(add-to-list 'load-path "~/.emacs.d/tern/emacs/")
+(autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 (eval-after-load 'tern
    '(progn
