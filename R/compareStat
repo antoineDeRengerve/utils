@@ -1,32 +1,104 @@
 #!/usr/bin/env Rscript
 library(data.table)
 
+# extract path of current script -> generate path to source rload
 initial.options <- commandArgs(trailingOnly = FALSE)
 file.arg.name <- "--file="
 script.name <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
 script.basename <- dirname(script.name)
 rload.path <- paste(sep="/", script.basename, "rload")
-print(paste("Sourcing",rload.path,"from",script.name))
 
 
-#rload("ref.txt")
+
+# load ref data
 commandArgs <- function(trailingOnly) "ref.txt"
 source(rload.path,local=TRUE,echo=FALSE)
-
 load("data_out.RData")
+ref_avg = avg;
+ref_min = min_;
+ref_max = max_;
+ref_sd = sd_;
 
-print("read")
-print(avg)
-print(min_)
-print(max_)
-print(sd_)
+print("ref_avg")
+print(ref_avg)
+print("ref_min")
+print(ref_min)
+print("ref_max")
+print(ref_max)
+print("ref_sd")
+print(ref_sd)
 
 
+# load test data
 commandArgs <- function(trailingOnly) "log.txt"
 source(rload.path,local=TRUE,echo=FALSE)
 load("data_out.RData")
 
-print(avg)
-print(min_)
-print(max_)
-print(sd_)
+test_avg = avg;
+test_min = min_;
+test_max = max_;
+test_sd = sd_;
+
+print("test_avg")
+print(test_avg)
+print("test_min")
+print(test_min)
+print("test_max")
+print(test_max)
+print("test_sd")
+print(test_sd)
+
+
+# analyse ref data
+
+# replace null standard dev by 1
+ref_sd[ref_sd==0] = 1;
+
+criteria1 = (ref_max - ref_avg) /ref_sd;
+criteria2 = (ref_avg - ref_min) /ref_sd;
+criteria3 = abs((test_avg + test_sd - ref_avg) /ref_sd);
+criteria4 = abs((test_avg - ref_avg) /ref_sd);
+criteria5 = abs((test_min - ref_avg) /ref_sd);
+criteria6 = abs((test_max - ref_avg) /ref_sd);
+
+
+message("Threshold : versus 3")
+crit1On = criteria1[criteria1>2]
+"crit1On"
+crit1On
+crit2On = criteria2[criteria2>2]
+"crit2On"
+crit2On
+crit3On = criteria3[criteria3>2]
+"crit3On"
+crit3On
+crit4On = criteria4[criteria4>2]
+"crit4On"
+crit4On
+crit5On = criteria3[criteria3>2]
+"crit5On"
+crit5On
+crit6On = criteria4[criteria4>2]
+"crit6On"
+crit6On
+
+
+message("Threshold : !=0")
+crit1On = criteria1[criteria1!=0]
+"crit1On"
+crit1On
+crit2On = criteria2[criteria2!=0]
+"crit2On"
+crit2On
+crit3On = criteria3[criteria3!=0]
+"crit3On"
+crit3On
+crit4On = criteria4[criteria4!=0]
+"crit4On"
+crit4On
+crit5On = criteria3[criteria3!=0]
+"crit5On"
+crit5On
+crit6On = criteria4[criteria4!=0]
+"crit6On"
+crit6On
