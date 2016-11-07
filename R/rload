@@ -22,19 +22,19 @@ if ( args[1] == "--help") {
 }
 
 
-head=TRUE
-data_out = fread(args[1], header=head)
+head=TRUE;
+data_out = fread(args[1], header=head);
 #data_out = read.csv(file="test.txt",header=head)
-data_out
+data_out;
 
-print(data_out)
+#print(data_out)
 
 # wd = getwd()
 # print(wd)
 
 # check if [,1] is potentially a timestamp
 time2 <- strptime(data_out$time,"%Y-%m-%dT%H:%M:%S%z")
-print(time2)
+#print(time2)
 time2 = as.POSIXct(time2);
 time2 = time2 - time2[1]
 
@@ -98,7 +98,7 @@ if ( !is.null(drop) ) {
 }
 data_out=subset(data_out,select=-c(1,time2),drop=true)
 
-print(data_out)
+
 message("Mean")
 avg=colMeans(data_out)
 print(avg)
@@ -112,7 +112,7 @@ message("StdDev")
 sd_=apply(data_out,2,sd)
 print(sd_)
 
-
+save(avg, min_, max_, sd, file="stat.rData")
 
 
 #warnings()

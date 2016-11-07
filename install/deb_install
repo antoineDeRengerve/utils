@@ -2,13 +2,13 @@ sudo apt-get install vim vlc thunderbird git screen emacs terminator chromium-br
 sudo apt-get install arduino arduino-core arduino-mk audacity avrdude blender bzr cmake coriander doxygen freecad g++ geany gimp gnome-panel gnome-tweak-tool gnuplot indicator-multiload inkscape kicad libreoffice meld minicom mplayer nmap npm okular openshot openssh-server owncloud-client planner postgresql ps2eps python-pip recordmydesktop schroot scilab sqlite3 ssh subversion synaptic
 sudo apt-get install tex-common tex-gyre texlive-base texlive-fonts-recommended-doc texlive-lang-french texlive-latex-base texlive-latex-base-doc  texlive-latex-extra texlive-latex-extra-doc texlive-latex-recommended texlive-latex-recommended-doc texlive-luatex  texlive-pictures texlive-pictures-doc texlive-pstricks texlive-pstricks-doc 
 sudo apt-get install ttf-bitstream-vera ttf-dejavu ttf-dejavu-core ttf-dejavu-extra ttf-freefont ttf-lyx ttf-mscorefonts-installer ttf-wqy-microhei
-sudo apt-get install unetbootin unrar valgrind velocity wireshark zim
+sudo apt-get install unetbootin unrar valgrind velocity wireshark zim ffmpeg
 # TODO install external packages : xmind, master-pdf-editor, adobe-reader, ganttproject, team-viewer
 echo "DEBIAN PACKAGES INSTALL DONE"
 
 echo "Config ZIM"
 sudo apt-get install python-gtksourceview2
-sudo apt-get install python-gtkspellcheck python-gtkspell
+sudo apt-get install python-gtkspellcheck 
 
 echo "Configure groups"
 sudo usermod -a -G dialout antoroll # default username is antoroll
