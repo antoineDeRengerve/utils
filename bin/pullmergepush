@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# check status (useless)
+if git status
+then
+	echo "ok"
+else
+	echo "pb"
+fi
+
+# back ongoing changes
+if git stash
+then
+	echo "git stash OK"
+	return 1
+else
+	echo "git stash failed"
+	return 1
+fi    
+
+
+# pull changes from remote
+if git pull
+then
+	echo "ok"
+else
+	echo "pull error"
+fi
+
+# pop ongoing changes
+if git stash pop
+then
+	echo "OK"
+else
+	echo "stash pop error"
+	# start merging using meld // should another merge software be used ?
+	git mergetool -y -t meld
+fi
+
+# push local changes to remote
+if git push
+then
+	echo "OK"
+else
+	echo "push error"
+	return 1
+fi
