@@ -99,18 +99,18 @@ if ( !is.null(drop) ) {
 data_out=subset(data_out,select=-c(1,time2),drop=true)
 
 
-message("Mean")
+"Mean"
 avg=colMeans(data_out)
-print(avg)
-message("Min")
+avg
+"Min"
 min_=apply(data_out,2,min)
-print(min_)
-message("Max")
+min_
+"Max"
 max_=apply(data_out,2,max)
-print(max_)
-message("StdDev")
+max_
+"StdDev"
 sd_=apply(data_out,2,sd)
-print(sd_)
+sd_
 
 save(avg, min_, max_, sd, file="stat.rData")
 
