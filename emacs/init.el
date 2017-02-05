@@ -19,7 +19,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar tmtxt/packages
-  '(ispell js2-mode ac-js2 multi-web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu ))
+  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil magit))
 (dolist (p tmtxt/packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -346,7 +346,22 @@
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 
 ;; Configure imenu NOT WORKING
-;; (defvar imenu-sort-function imenu--sort-by-name)
+(defun try-to-add-imenu ()
+  (condition-case nil (imenu-add-to-menubar "IMenu") (error nil)))
+(add-hook 'font-lock-mode-hook 'try-to-add-imenu)
+(defvar imenu-sort-function imenu--sort-by-name)
+(defun my-imenu-rescan ()
+  (interactive)
+  (imenu--menubar-select imenu--rescan-item))
+(global-set-key (kbd "C-c i") 'my-imenu-rescan)
+
+
+;; Helm config
+(require 'helm-config)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(helm-mode 1)
 
 ;; save sessions in directory
 (setq desktop-path '("."))
@@ -357,15 +372,18 @@
 (setq desktop-restore-forces-onscreen nil)
 (desktop-save-mode 1)
 
-;; programming in html pages mixing codes
-(require 'multi-web-mode)
-(setq mweb-default-major-mode 'html-mode)
-(setq mweb-tags
-  '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-    (js2-mode  "<script[^>]*>" "</script>")
-    (css-mode "<style[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
-(multi-web-global-mode 1)
+;; Web development
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-code-indent-offset 4)
+(setq web-mode-script-padding 4)
 
 ;; Window management
 ;(windmove-default-keybindings)
@@ -387,3 +405,7 @@
 
 ;; delete trailing spaces at save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Evil mode
+(require 'evil)
+(evil-mode 1)
