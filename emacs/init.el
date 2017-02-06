@@ -19,7 +19,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar tmtxt/packages
-  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil magit))
+  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit))
 (dolist (p tmtxt/packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -28,10 +28,6 @@
 ;; Pour afficher le numéro de la ligne courante :
 (line-number-mode 1)
 
-;; Pour pouvoir aller directement à un numéro de ligne donné en tapant Ctrl-L :
-(global-set-key "\C-l" 'goto-line)
-
-(global-set-key (kbd "C-<") 'set-mark-command)
 
 
 ;; Pour avoir une touche Delete qui efface bien en arrière :
@@ -172,8 +168,8 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; Afficher la 'parenthese correspondante'
-;(require 'paren)
-;(show-paren-mode t)
+(require 'paren)
+(show-paren-mode t)
 
 ;; Recherche non case-sensitive
 (setq case-fold-search t)
@@ -387,18 +383,23 @@
 
 ;; Window management
 ;(windmove-default-keybindings)
-(global-set-key (kbd "M-<left>")  'windmove-left)
-(global-set-key (kbd "M-<right>") 'windmove-right)
-(global-set-key (kbd "M-<up>")    'windmove-up)
-(global-set-key (kbd "M-<down>")  'windmove-down)
-(global-set-key (kbd "M-<f10>")  'toggle-frame-maximized)
-(global-set-key (kbd "M-<f11>")  'toggle-frame-fullscreen)
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+(global-set-key (kbd "C-c h")  'windmove-left)
+(global-set-key (kbd "C-c l") 'windmove-right)
+(global-set-key (kbd "C-c k")    'windmove-up)
+(global-set-key (kbd "C-c j")  'windmove-down)
+(global-set-key (kbd "C-c <f10>")  'toggle-frame-maximized)
+(global-set-key (kbd "C-c <f11>")  'toggle-frame-fullscreen)
 
 
 ;; Global handlers for programming devel
-(global-set-key (kbd "C-e")  'next-error)
-(global-set-key (kbd "C-c e")  'previous-error)
+(global-set-key (kbd "C-c e")  'next-error)
+(global-set-key (kbd "C-c E")  'previous-error)
 (global-set-key (kbd "C-c c")  'comment-or-uncomment-region)
+
 
 ;; Theme zenburn
 (load-theme 'zenburn t)
@@ -409,3 +410,8 @@
 ;; Evil mode
 (require 'evil)
 (evil-mode 1)
+
+;; Line number + relative
+(linum-mode)
+(linum-relative-global-mode)
+(setq linum-relative-current-symbol "")
