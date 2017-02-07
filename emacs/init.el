@@ -361,26 +361,17 @@
 
 ;; save sessions in directory
 (if (daemonp)
-    (setq desktop-dirname "~/.emacs.d/desktop/")
+    (setq desktop-dirname "~/.emacs.d/desktop/"
+		  desktop-save                t
+		  desktop-load-locked-desktop t)
     (setq desktop-dirname "."))
 (setq desktop-base-file-name ".emacs-desktop"
-	  desktop-base-lock-name      "lock"
 	  desktop-path (list desktop-dirname)
 	  desktop-restore-frames t
-	  desktop-restore-in-current-display t
-      desktop-save                t)
+	  desktop-restore-in-current-display t)
 ;(setq desktop-restore-forces-onscreen nil)
 (desktop-save-mode 1)
 
-;; Automatically save and restore sessions
-(setq desktop-dirname             "~/.emacs.d/desktop/"
-      desktop-base-file-name      "emacs.desktop"
-      desktop-base-lock-name      "lock"
-      desktop-path                (list desktop-dirname)
-      desktop-save                t
-      desktop-files-not-to-save   "^$" ;reload tramp paths
-      desktop-load-locked-desktop nil)
-(desktop-save-mode 1)
 
 ;; Web development
 (require 'web-mode)
