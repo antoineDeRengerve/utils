@@ -3,9 +3,10 @@
 # for examples
 
 export PATH=$PATH:$HOME/bin
-export EDITOR=vim
 export BROWSER=firefox
-
+export ALTERNATE_EDITOR="emacs -fs"
+export EDITOR="emacsclient -t"                  # $EDITOR should open in terminal
+export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI with non-daemon as alternate
 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -21,6 +22,9 @@ export LC_NAME=fr_FR.UTF-8
 export LC_ADDRESS=fr_FR.UTF-8
 export LC_TELEPHONE=fr_FR.UTF-8
 export LC_MEASUREMENT=fr_FR.UTF-8
+
+# Better colors in terminal
+export TERM=xterm-256color
 
 #CUSTOM
 if [ -d $HOME/.bashrc.d ]
@@ -137,8 +141,8 @@ alias d='ls'
 alias p='cd -'
 alias sh='bash'
 alias e='emacs -fs'
-alias eb='emacs -nw'
-alias ec='emacsclient -qc -a ""'
+alias eb='emacsclient -t'
+alias ec='emacsclient -c'
 alias t='terminator -f'
 alias cb='xclip -selection clipboard'
 

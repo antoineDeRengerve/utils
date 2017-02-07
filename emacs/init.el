@@ -360,12 +360,26 @@
 (helm-mode 1)
 
 ;; save sessions in directory
-(setq desktop-path '("."))
-(setq desktop-dirname ".")
-(setq desktop-base-file-name ".emacs-desktop")
-(setq desktop-restore-frames t)
-(setq desktop-restore-in-current-display t)
-(setq desktop-restore-forces-onscreen nil)
+(if (daemonp)
+    (setq desktop-dirname "~/.emacs.d/desktop/")
+    (setq desktop-dirname "."))
+(setq desktop-base-file-name ".emacs-desktop"
+	  desktop-base-lock-name      "lock"
+	  desktop-path (list desktop-dirname)
+	  desktop-restore-frames t
+	  desktop-restore-in-current-display t
+      desktop-save                t)
+;(setq desktop-restore-forces-onscreen nil)
+(desktop-save-mode 1)
+
+;; Automatically save and restore sessions
+(setq desktop-dirname             "~/.emacs.d/desktop/"
+      desktop-base-file-name      "emacs.desktop"
+      desktop-base-lock-name      "lock"
+      desktop-path                (list desktop-dirname)
+      desktop-save                t
+      desktop-files-not-to-save   "^$" ;reload tramp paths
+      desktop-load-locked-desktop nil)
 (desktop-save-mode 1)
 
 ;; Web development
@@ -401,8 +415,14 @@
 (global-set-key (kbd "C-c c")  'comment-or-uncomment-region)
 
 
-;; Theme zenburn
-(load-theme 'zenburn t)
+;; Theme zenburn + update to allow correct loading of theme with daemon
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+        (lambda (frame)
+            (select-frame frame)
+            (load-theme 'zenburn t)))
+    (load-theme 'zenburn t))
 
 ;; delete trailing spaces at save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -410,8 +430,22 @@
 ;; Evil mode
 (require 'evil)
 (evil-mode 1)
+(define-key evil-normal-state-map (kbd "<tab>") 'indent-for-tab-command)
+
+;; Custom undo commands
+(global-set-key (kbd "C-:")  'undo-tree-redo) ; also C-?
+
+
 
 ;; Line number + relative
 (linum-mode)
 (linum-relative-global-mode)
 (setq linum-relative-current-symbol "")
+
+;; define function to shutdown emacs server instance
+(defun server-shutdown ()
+  "Save buffers, Quit, and Shutdown (kill) server"
+  (interactive)
+  (save-some-buffers)
+  (kill-emacs)
+  )

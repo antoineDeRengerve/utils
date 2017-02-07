@@ -7,3 +7,9 @@ echo "EMACS SETTING DONE"
 # In order to use markdown-mode functions
 sudo apt-get install markdown 
 
+# Add emacs daemon as a service systemd
+mkdir -p ~/.config/systemd/user/
+cp emacs.service ~/.config/systemd/user/
+systemctl --user enable emacs
+systemctl --user start emacs
+systemctl --user status emacs
