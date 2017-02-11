@@ -1,0 +1,42 @@
+
+CURRPATH=`pwd`
+
+PROJECTS=`ls dist/ -I *.deb`
+
+echo "PROJECTS: $PROJECTS"
+
+for PROJ in $PROJECTS
+do
+	# correct select files not in DEBIAN
+	FILES=`find ./dist/$PROJ -path "*/DEBIAN" -prune -o -type d -o -print`
+
+	for FILE in $FILES
+	do
+		#echo $FILE
+		NAME=${FILE##*/}
+		DEST="${FILE##./dist/$PROJ}"
+		if [ ! -f $DEST ] 
+		then
+			echo -e "Cannot attach!  $DEST does not exist !"
+			echo -e "Please, diya-build -cpi before attaching."
+			echo "Stopping..."
+			exit
+		fi
+		#echo $DEST
+	done
+	for FILE in $FILES
+	do
+		#echo $FILE
+		NAME=${FILE##*/}
+		SRC="$CURRPATH/$FILE"
+		#echo $SRC
+		#find -path "./dist" -prune -o -path "*icons.html" -print	
+		DEST="${FILE##./dist/$PROJ}"
+		#echo $DEST
+		rm $DEST
+		ln -s $SRC $DEST
+	done
+done
+
+
+

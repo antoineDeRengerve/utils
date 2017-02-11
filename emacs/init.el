@@ -385,6 +385,7 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (setq web-mode-code-indent-offset 4)
 (setq web-mode-script-padding 4)
+(setq web-mode-style-padding 0)
 
 ;; Window management
 ;(windmove-default-keybindings)
