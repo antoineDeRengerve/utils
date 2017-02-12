@@ -5,8 +5,11 @@
 #               DIYA ATTACH2
 #
 #--------------------------------------------#
-# version 0.5
+# version 0.8
 # Antoine de Rengervé
+
+IGNORE='-o -path *bower_components -prune -o -path *node_modules -prune '
+
 
 OPT="#$1"
 if [ $OPT == "#-h" ] || [ $OPT == "#--help" ]
@@ -27,11 +30,11 @@ echo "PROJECTS: $PROJECTS"
 for PROJ in $PROJECTS
 do
 	# correct select files not in DEBIAN
-	FILES=`find ./dist/$PROJ -path "*/DEBIAN" -prune -o -type d -o  -print`
+	FILES=`find ./dist/$PROJ -path "*/DEBIAN" -prune $IGNORE -o -type d -o  -print`
 
 	for FILE in $FILES
 	do
-
+		#echo $FILE
 		SUFF=""
 		COUNT=10
         while [[ $COUNT -gt 1 ]]
@@ -39,13 +42,13 @@ do
             SUFF="/*$SUFF"
             PREFIX=${FILE%$SUFF}
             NAME=${FILE#$PREFIX}
-            COUNT=`find -path "./dist" -prune -o -type d -o -path "*$NAME" -print | wc -l`
+            COUNT=`find -path "./dist" -prune $IGNORE -o -type d -o -path "*$NAME" -print | wc -l`
 
 			# PREFIX=${FILE%/*}
 			# NAME=${FILE#$PREFIX}
 			# COUNT=`find -path "./dist" -prune -o -path "*$NAME" -print | wc -l`
 
-			SRCS=`find -path "./dist" -prune -o -type d -o -path "*$NAME" -print`
+			SRCS=`find -path "./dist" -prune $IGNORE -o -type d -o -path "*$NAME" -print`
 			#echo $NAME $SRCS $COUNT
 
 			CANDIDATES=""
@@ -96,7 +99,7 @@ do
 			then
 				NAME=$FILE
 			fi
-            SRCS=`find -path "./dist" -prune -o -type d -o -path "*$NAME" -print `
+            SRCS=`find -path "./dist" -prune $IGNORE -o -type d -o -path "*$NAME" -print `
 
 			echo "Cannot attach some files because could not determine source for $FILE"
             echo -e "Candidates are :\n$SRCS"
