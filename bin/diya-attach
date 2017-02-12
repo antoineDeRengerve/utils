@@ -1,3 +1,22 @@
+#!/bin/bash
+
+#--------------------------------------------#
+#
+#		DIYA ATTACH
+#
+#--------------------------------------------#
+# version 0.5
+# Antoine de Rengervé
+
+OPT="#$1"
+if [ $OPT == "#-h" ] || [ $OPT == "#--help" ]
+then
+	echo "diya-attach: attach files from dist to corresponding installation directory."
+	echo "NB: does not comply with spaces in names of files"
+	echo "Does not attach if file does not already exists."
+	echo "Create files with diya-build -cpi. This allows to keep them managed by apt thus a next installation will remove and recreate files"
+	exit
+fi
 
 CURRPATH=`pwd`
 
@@ -12,29 +31,24 @@ do
 
 	for FILE in $FILES
 	do
-		#echo $FILE
 		NAME=${FILE##*/}
 		DEST="${FILE##./dist/$PROJ}"
 		if [ ! -f $DEST ] 
 		then
-			echo -e "Cannot attach!  $DEST does not exist !"
+			echo -e "Cannot attach some files!  $DEST does not exist !"
 			echo -e "Please, diya-build -cpi before attaching."
-			echo "Stopping..."
-			exit
 		fi
-		#echo $DEST
 	done
 	for FILE in $FILES
 	do
-		#echo $FILE
 		NAME=${FILE##*/}
 		SRC="$CURRPATH/$FILE"
-		#echo $SRC
-		#find -path "./dist" -prune -o -path "*icons.html" -print	
 		DEST="${FILE##./dist/$PROJ}"
-		#echo $DEST
-		rm $DEST
-		ln -s $SRC $DEST
+		if [ -f $DEST ] 
+		then
+			rm $DEST
+			ln -s $SRC $DEST
+		fi
 	done
 done
 
