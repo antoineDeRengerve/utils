@@ -8,7 +8,7 @@
 # version 0.8
 # Antoine de Rengervé
 
-IGNORE='-o -path *bower_components -prune -o -path *node_modules -prune '
+IGNORE="-o -path '*bower_components' -prune -o -path '*node_modules' -prune "
 
 
 OPT="#$1"
@@ -18,6 +18,10 @@ then
     echo "NB: does not comply with spaces in names of files"
     echo "Does not attach if file does not already exists."
     echo "Create files with diya-build -cpi. This allows to keep them managed by apt thus a next installation will remove and recreate files"
+    echo -e "\nBeware that loading symlink with nodejs is tricky ! Indeed, realpath are resolved and require in symlinked project may fails."
+    echo -e "For instance, symlinked diya-node services will fail because of node_modules not found."
+    echo -e "Work around is \n\texport NODE_PATH=\$NODE_PATH:/usr/lib/diya-node/node_modules\nallowing the search for node modules in the adequate directory."
+    echo -e "A better way may be to use require.main.require but would require that code is changed"
     exit
 fi
 
