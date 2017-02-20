@@ -1,0 +1,27 @@
+killall firefox
+killall thunderbird
+killall terminator
+pkill -f "emacsclients -c"
+pkill -f "terminator -l status"
+
+firefox &
+
+thunderbird &
+
+zim &
+
+emacsclient -c &
+
+terminator -l status&
+
+chromium-browser &
+
+sleep 3
+
+
+xdotool search --desktop 0 --name "chromium*" set_desktop_for_window 2
+xdotool search --desktop 0 --name "emacs" set_desktop_for_window 1
+xdotool search --desktop 0 --classname "terminator" set_desktop_for_window 1
+xdotool search --desktop 0 --name "thunderbird" set_desktop_for_window 0
+xdotool search --desktop 0 --name "firefox" set_desktop_for_window 0
+xdotool search --desktop 0 --name "zim" set_desktop_for_window 4
