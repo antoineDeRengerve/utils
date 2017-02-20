@@ -8,7 +8,10 @@
 # version 0.8
 # Antoine de Rengervé
 
-IGNORE="-o -path '*bower_components' -prune -o -path '*node_modules' -prune "
+#IGNORE=" -path '*bower_components' -prune -o -path '*node_modules' -prune "
+IGNORE=' -not -path *bower_components* -a -not -path *node_modules* -a '
+TEST="-not -path *bower_components* -a -not -path *node_modules* -a "
+TEST="-path *.json -a"
 
 
 OPT="#$1"
@@ -26,16 +29,15 @@ then
 fi
 
 
-CURRPATH=`pwd`
-PROJECTS=`ls dist/ -I *.deb`
+CURRPATH=$(pwd)
+PROJECTS=$(ls dist/ -I *.deb)
+
 
 echo "PROJECTS: $PROJECTS"
 
 for PROJ in $PROJECTS
 do
-	# correct select files not in DEBIAN
-	FILES=`find ./dist/$PROJ -path "*/DEBIAN" -prune $IGNORE -o -type d -o  -print`
-
+	FILES="$(find ./dist/$PROJ -path '*/DEBIAN' -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -print)"
 	for FILE in $FILES
 	do
 		#echo $FILE
@@ -46,13 +48,13 @@ do
             SUFF="/*$SUFF"
             PREFIX=${FILE%$SUFF}
             NAME=${FILE#$PREFIX}
-            COUNT=`find -path "./dist" -prune $IGNORE -o -type d -o -path "*$NAME" -print | wc -l`
+            COUNT=$(find -path './dist' -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -a -path "*$NAME" -print | wc -l)
 
 			# PREFIX=${FILE%/*}
 			# NAME=${FILE#$PREFIX}
 			# COUNT=`find -path "./dist" -prune -o -path "*$NAME" -print | wc -l`
 
-			SRCS=`find -path "./dist" -prune $IGNORE -o -type d -o -path "*$NAME" -print`
+			SRCS=$(find -path './dist' -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -a -path "*$NAME" -print)
 			#echo $NAME $SRCS $COUNT
 
 			CANDIDATES=""
@@ -73,14 +75,14 @@ do
 					#					echo "diff $SRC $FILE | wc -l"
 					if [ -f $SRC ]
 					then
-						DIFF=`diff $SRC $FILE | wc -l`
+						DIFF=$(diff $SRC $FILE | wc -l)
 						if [ $DIFF -eq 0 ]
 						then
 							CANDIDATES="$SRC $CANDIDATES"
 						fi
 					fi
 				done
-				COUNT=`echo $CANDIDATES | wc -w`
+				COUNT=$(echo $CANDIDATES | wc -w)
 			fi
         done
 
@@ -103,8 +105,7 @@ do
 			then
 				NAME=$FILE
 			fi
-            SRCS=`find -path "./dist" -prune $IGNORE -o -type d -o -path "*$NAME" -print `
-
+            SRCS=$( find -path "./dist" -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -a -path "*$NAME" -print )
 			echo "Cannot attach some files because could not determine source for $FILE"
             echo -e "Candidates are :\n$SRCS"
             echo "Consider removing $FILE if not relevant."
