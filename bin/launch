@@ -1,27 +1,30 @@
+#!/bin/bash
+
+# Killing apps if already launched
 killall firefox
 killall thunderbird
 killall terminator
-pkill -f "emacsclients -c"
-pkill -f "terminator -l status"
+pkillall-f "emacsclients -c"
+pkill -f "terminator -l launch "
+pkill -f "libreoffice /home/antoroll/ownCloud/R\&D\ Gen/Planning\ et\ gestion\ et\ plans\ d\'actions/Antoine/TaskList.ods"
 
+# Launching apps
 firefox &
-
 thunderbird &
-
 zim &
-
 emacsclient -c &
-
-terminator -l status&
-
+terminator -l launch &
 chromium-browser &
+libreoffice /home/antoroll/ownCloud/R\&D\ Gen/Planning\ et\ gestion\ et\ plans\ d\'actions/Antoine/TaskList.ods &
 
+# Pause
 sleep 3
 
-
+# Moving windows to desktop
 xdotool search --desktop 0 --name "chromium*" set_desktop_for_window 2
 xdotool search --desktop 0 --name "emacs" set_desktop_for_window 1
 xdotool search --desktop 0 --classname "terminator" set_desktop_for_window 1
 xdotool search --desktop 0 --name "thunderbird" set_desktop_for_window 0
 xdotool search --desktop 0 --name "firefox" set_desktop_for_window 0
 xdotool search --desktop 0 --name "zim" set_desktop_for_window 4
+xdotool search --desktop 0 --name "libreoffice" set_desktop_for_window 0
