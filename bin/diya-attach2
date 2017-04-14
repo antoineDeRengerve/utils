@@ -2,115 +2,55 @@
 
 #--------------------------------------------#
 #
-#               DIYA ATTACH2
+#		DIYA ATTACH
 #
 #--------------------------------------------#
-# version 0.8
+# version 0.5
 # Antoine de Rengervé
-
-#IGNORE=" -path '*bower_components' -prune -o -path '*node_modules' -prune "
-IGNORE=' -not -path *bower_components* -a -not -path *node_modules* -a '
-TEST="-not -path *bower_components* -a -not -path *node_modules* -a "
-TEST="-path *.json -a"
-
 
 OPT="#$1"
 if [ $OPT == "#-h" ] || [ $OPT == "#--help" ]
 then
-    echo "diya-attach: attach files from dist to corresponding installation directory."
-    echo "NB: does not comply with spaces in names of files"
-    echo "Does not attach if file does not already exists."
-    echo "Create files with diya-build -cpi. This allows to keep them managed by apt thus a next installation will remove and recreate files"
-    echo -e "\nBeware that loading symlink with nodejs is tricky ! Indeed, realpath are resolved and require in symlinked project may fails."
-    echo -e "For instance, symlinked diya-node services will fail because of node_modules not found."
-    echo -e "Work around is \n\texport NODE_PATH=\$NODE_PATH:/usr/lib/diya-node/node_modules\nallowing the search for node modules in the adequate directory."
-    echo -e "A better way may be to use require.main.require but would require that code is changed"
-    exit
+	echo "diya-attach: attach files from dist to corresponding installation directory."
+	echo "NB: does not comply with spaces in names of files"
+	echo "Does not attach if file does not already exists."
+	echo "Create files with diya-build -cpi. This allows to keep them managed by apt thus a next installation will remove and recreate files"
+	exit
 fi
 
+CURRPATH=`pwd`
 
-CURRPATH=$(pwd)
-PROJECTS=$(ls dist/ -I *.deb)
-
+PROJECTS=`ls dist/ -I *.deb`
 
 echo "PROJECTS: $PROJECTS"
 
 for PROJ in $PROJECTS
 do
-	FILES="$(find ./dist/$PROJ -path '*/DEBIAN' -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -print)"
+	# correct select files not in DEBIAN
+	FILES=`find ./dist/$PROJ -path "*/DEBIAN" -prune -o -type d -o -print`
+
 	for FILE in $FILES
 	do
-		#echo $FILE
-		SUFF=""
-		COUNT=10
-        while [[ $COUNT -gt 1 ]]
-        do
-            SUFF="/*$SUFF"
-            PREFIX=${FILE%$SUFF}
-            NAME=${FILE#$PREFIX}
-            COUNT=$(find -path './dist' -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -a -path "*$NAME" -print | wc -l)
-
-			# PREFIX=${FILE%/*}
-			# NAME=${FILE#$PREFIX}
-			# COUNT=`find -path "./dist" -prune -o -path "*$NAME" -print | wc -l`
-
-			SRCS=$(find -path './dist' -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -a -path "*$NAME" -print)
-			#echo $NAME $SRCS $COUNT
-
-			CANDIDATES=""
-			if [ -z $NAME ]
-			then
-				COUNT=0
-			fi
-
-			if [ $COUNT -eq 1 ]
-			then
-				CANDIDATES=$SRCS
-			fi
-			if [ $COUNT -gt 1 ]
-			then
-				#echo $SRCS
-				for SRC in $SRCS
-				do
-					#					echo "diff $SRC $FILE | wc -l"
-					if [ -f $SRC ]
-					then
-						DIFF=$(diff $SRC $FILE | wc -l)
-						if [ $DIFF -eq 0 ]
-						then
-							CANDIDATES="$SRC $CANDIDATES"
-						fi
-					fi
-				done
-				COUNT=$(echo $CANDIDATES | wc -w)
-			fi
-        done
-
-		if [ $COUNT -eq 1 ]
+		NAME=${FILE##*/}
+		DEST="${FILE##./dist/$PROJ}"
+		if [ ! -f $DEST ] 
 		then
-			SRC=$CURRPATH/$CANDIDATES
-			DEST="${FILE##./dist/$PROJ}"
-	        if [ -f $DEST ]
-	        then
-				rm $DEST
-				ln -s $SRC $DEST
-			else
-				echo -e "Cannot attach some files!  $DEST does not exist !"
-				echo -e "Please, diya-build -cpi before attaching."
-			fi
-		else
-			PREFIX=${FILE%/*}
-            NAME=${FILE#$PREFIX}
-			if [ -z $NAME ]
-			then
-				NAME=$FILE
-			fi
-            SRCS=$( find -path "./dist" -prune -o -path '*bower_components' -prune -o -path '*node_modules' -prune -o -type f -a -path "*$NAME" -print )
-			echo "Cannot attach some files because could not determine source for $FILE"
-            echo -e "Candidates are :\n$SRCS"
-            echo "Consider removing $FILE if not relevant."
+			echo -e "Cannot attach some files!  $DEST does not exist !"
+			echo -e "Please, diya-build -cpi before attaching."
+		fi
+	done
+	for FILE in $FILES
+	do
+		NAME=${FILE##*/}
+		SRC="$CURRPATH/$FILE"
+		DEST="${FILE##./dist/$PROJ}"
+		if [ -f $DEST ] 
+		then
+			rm $DEST
+			ln -s $SRC $DEST
 		fi
 	done
 done
 
-echo "Attaching is done"
+
+

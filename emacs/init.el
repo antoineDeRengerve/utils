@@ -152,6 +152,15 @@
 (setq-default indent-tabs-mode t)
 (smart-tabs-insinuate 'c 'c++ 'javascript 'java 'cperl 'ruby 'python 'nxml)
 
+
+(add-hook 'python-mode-hook
+      (lambda ()
+        (setq indent-tabs-mode t)
+        (setq tab-width 4)
+        (setq python-indent 4)))
+
+
+
 ;; arduino-mode config
 ;(add-to-list 'auto-mode-alist '("\\.\\(pde\\|ino\\)$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
