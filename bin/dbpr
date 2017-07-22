@@ -7,8 +7,9 @@ cd dist
 FILES=$(find -name *.deb)
 for FILE in ${FILES}
 do
-	scp dist/$FILE diya@$1
+	scp $FILE diya@$1:.
 	ssh diya@$1 sudo dpkg -i $FILE  
+	ssh diya@$1 rm $FILE
 done
 cd -
 
