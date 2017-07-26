@@ -1,0 +1,43 @@
+#!/bin/bash
+
+
+if [ $# -lt 1 ]
+then
+	echo "Usage:"
+	echo "de <deviceName> [set-host]"
+	echo "Device name: sub of the container name (ex: d1r1)"
+	exit 1
+fi
+
+
+NAME=$(echo $1 | sed 's/\([0-9a-zA-Z]*\).*/\1/') # only first word, sanitizing
+
+CONTAINER=$(docker ps | grep $NAME)
+CONTAINERID=${CONTAINER%% *}
+
+
+IPADRESS=$(docker inspect $CONTAINERID | grep Networks -A 20 | grep '"IPAddress":')
+IPADRESS=${IPADRESS%%\",}
+IPADRESS=${IPADRESS##*: \"}
+
+echo "Container $NAME : $CONTAINERID [$IPADRESS]"
+
+CURRENTIP=$(grep $NAME /etc/hosts)
+CURRENTIP=$(echo $CURRENTIP | sed 's/\([0-9.]*\).*/\1/') # keep IP adress
+
+if [ "$CURRENTIP" == "" ]
+then
+	echo "Updating /etc/hosts (Add IP)"
+	sudo sed -i "3i${IPADRESS}\	$NAME"  /etc/hosts
+else
+	if [ "$CURRENTIP" != "$IPADRESS"  ]
+	then
+		echo "Current IP : $CURRENTIP"
+		echo "Updating /etc/hosts (Update IP)"
+		sudo sed -i s/.*$NAME/${IPADRESS}\	$NAME/  /etc/hosts
+	fi
+fi
+
+echo "Connecting to $NAME"
+docker exec -it $CONTAINERID bash
+
