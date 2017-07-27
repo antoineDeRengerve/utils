@@ -1,0 +1,10 @@
+#!/bin/bash
+
+LIST=$(ls)
+
+for NAME in $LIST
+do
+	ffmpeg -i $NAME -vf scale=w=1500:h=1000:force_original_aspect_ratio=decrease -crf 18 -y $NAME
+done
+
+
