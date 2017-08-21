@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Alternative version to deshak
+
+# Path to a ffmpeg bin with vidstabdetect option compiled
+FFMPEG=$HOME/bin/ffmpeg/ffmpeg
+
+$FFMPEG -i $1 -vf vidstabdetect=shakiness=10:accuracy=15 -f null - 
+
+$FFMPEG -i $1 -y -vf vidstabtransform=smoothing=30 stabv2_$1
+
