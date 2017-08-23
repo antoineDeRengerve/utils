@@ -1,0 +1,63 @@
+#!/usr/bin/python3
+
+import sys
+import os
+import csv
+from shutil import copyfile
+from shutil import rmtree
+
+
+def parseOptions():
+    cmds = None
+    if len(sys.argv) < 2:
+        help()
+        exit()
+    # Parse options : path
+    if len(sys.argv) >= 2:
+        path =  sys.argv[1]
+    # Parse options : index
+    if len(sys.argv) >= 3:
+        index =  sys.argv[2]
+    else:
+	    index = 14
+    return (path, index)
+
+
+def help():
+    print("\nUsage : makeVidSeq2 <path>")
+    print("path to sound.txt: ex: 8")
+
+
+def main():
+	(path,index) = parseOptions()
+	outputDir = path+'/output/'
+	srcPath = 'sounds/'
+
+	# rm content from output dir
+	rmtree(outputDir)
+	# create outputDir
+	os.makedirs(outputDir)
+
+	with open(path+'/sound.txt','r') as soundFile:
+		soundEvts = csv.reader(soundFile, delimiter=' ')
+		timeStart = None
+		num = 0
+		for row in soundEvts:
+			# time
+			time = float(row[0])
+			if timeStart == None:
+				timeStart = time
+			dt = time - timeStart
+			print(dt)
+			if float(row[index])>0.5:
+				src = srcPath+'EvtSound.png'
+			else:
+				src = srcPath+'noSound.png'
+			# copy file into file with more data
+			# path joining version for other paths
+			#num = len([name for name in os.listdir(outputDir) if os.path.isfile(os.path.join(outputDir, name))])
+			num = num + 1
+			dest = outputDir+'suj'+path+'seq_'+str(num)
+			copyfile(src, dest)
+
+main()
