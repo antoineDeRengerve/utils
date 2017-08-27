@@ -15,12 +15,110 @@ def parseOptions():
     # Parse options : path
     if len(sys.argv) >= 2:
         path =  sys.argv[1]
-    # Parse options : index
+    # Parse options : accidentEn
+    accidentEn = True # default
     if len(sys.argv) >= 3:
-        index =  sys.argv[2]
-    else:
-	    index = 14
-    return (path, index)
+	    if sys.argv[2] == 0:
+		    accidentEn = False
+    # Parse options : index
+    index = 14 # default
+    if len(sys.argv) >= 4:
+        index =  sys.argv[3]
+    return (path, index, accidentEn)
+
+def getTimeRange(path):
+	indexControl = 1
+	startTime = -1
+	stopTime = -1
+	with open(path+'/control.SAVE','r') as controleFile:
+		control = csv.reader(controleFile, delimiter=' ')
+		prevValue = 1 # robot stopped
+		for row in control:
+			time = float(row[0])
+			currValue = float(row[indexControl])
+			if prevValue != currValue:
+				if currValue < 0.5:
+					startTime = time # start
+					print("StartTime: "+str(startTime))
+				if currValue > 0.5:
+					stopTime = time # stop
+					print("StopTime: "+str(stopTime))
+				prevValue = currValue
+		# close file
+		controleFile.close()
+	return (startTime, stopTime)
+
+def makeImageSequence(options, timeRange):
+	(path, index, accidentEn) = options
+	outputDir = path+'/output/'
+	srcPath = 'sounds/'
+
+	# parameter of seq video
+	fps = 30  # Hz
+	seqVid_dt = 1/fps # time step of video
+	evtDuration = 0.200  # s
+	evtTimer = 0 #s
+	seuilAcc = 0.5 #s - time thresh
+	(startTime, stopTime) = timeRange
+
+	# type of event (TODO enumerate ?)
+	type_normal = 0
+	type_accident = 1
+
+	# rm content from output dir
+	try:
+		rmtree(outputDir)
+	except:
+		print("Output unknown")
+	# create outputDir
+	os.makedirs(outputDir)
+
+	with open(path+'/sound.txt','r') as soundFile:
+		soundEvts = csv.reader(soundFile, delimiter=' ')
+		timeStart = None
+		num = 0
+
+		timeVid = 0;
+		lastEvent = -1
+		for row in soundEvts:
+			# time
+			time = float(row[0])
+			# only process for time in time range
+			if time<startTime or time>stopTime:
+				continue
+			if timeStart == None:
+				timeStart = time
+			dt = time - timeStart
+			if float(row[index])>0.5:
+				evtType = type_normal
+				if accidentEn:
+					if dt-lastEvent < seuilAcc:
+						evtType = type_accident
+					lastEvent = dt
+				evtTimer = evtDuration
+			while dt > timeVid:
+				# print("dt "+str(dt))
+				# print("TimeVid "+str(timeVid))
+				# print("EvtTimer "+str(evtTimer))
+				if evtTimer > 0:
+					if evtType == type_normal:
+						src = srcPath+'EvtSound.png'
+					if evtType == type_accident:
+						src = srcPath+'accSound.png'
+					# Decrement evtTimer
+					evtTimer -= seqVid_dt
+				else:
+					src = srcPath+'noSound.png'
+				# copy file into file with more data
+				# path joining version for other paths
+				#num = len([name for name in os.listdir(outputDir) if os.path.isfile(os.path.join(outputDir, name))])
+				num = num + 1
+				dest = outputDir+'suj'+path+'seq_'+str(num)+'.png'
+				copyfile(src, dest)
+				# Increment timeVid
+				timeVid += seqVid_dt
+		# close file
+		soundFile.close()
 
 
 def help():
@@ -29,35 +127,13 @@ def help():
 
 
 def main():
-	(path,index) = parseOptions()
-	outputDir = path+'/output/'
-	srcPath = 'sounds/'
+	options = parseOptions()
+	path = options[0]
 
-	# rm content from output dir
-	rmtree(outputDir)
-	# create outputDir
-	os.makedirs(outputDir)
+	# get time range
+	timeRange = getTimeRange(path)
 
-	with open(path+'/sound.txt','r') as soundFile:
-		soundEvts = csv.reader(soundFile, delimiter=' ')
-		timeStart = None
-		num = 0
-		for row in soundEvts:
-			# time
-			time = float(row[0])
-			if timeStart == None:
-				timeStart = time
-			dt = time - timeStart
-			print(dt)
-			if float(row[index])>0.5:
-				src = srcPath+'EvtSound.png'
-			else:
-				src = srcPath+'noSound.png'
-			# copy file into file with more data
-			# path joining version for other paths
-			#num = len([name for name in os.listdir(outputDir) if os.path.isfile(os.path.join(outputDir, name))])
-			num = num + 1
-			dest = outputDir+'suj'+path+'seq_'+str(num)
-			copyfile(src, dest)
+	# Make image sequence
+	makeImageSequence(options,timeRange)
 
 main()
