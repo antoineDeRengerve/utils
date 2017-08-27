@@ -443,8 +443,8 @@
 (setq linum-relative-current-symbol "")
 
 ;; Magit mode
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+(global-set-key (kbd "C-x j") 'magit-status)
+(global-set-key (kbd "C-x M-j") 'magit-dispatch-popup)
 
 ;; NeoTree
 (require 'neotree)
