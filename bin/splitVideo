@@ -13,6 +13,6 @@ else
 fi
 
 
-ffmpeg -i $INPUT -c copy -f segment -segment_time $TIME -reset_timestamps 1 $OUTPUT_%02d.MOV
+ffmpeg -i $INPUT -c copy -f segment -segment_time $TIME -reset_timestamps 1 ${OUTPUT}_%02d.MOV
 
 
