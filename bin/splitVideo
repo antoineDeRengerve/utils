@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Split video $1 into segment of $2 (90) seconds files
+INPUT=$1
+OUTPUT=${1%.*}
+echo $OUTPUT
+
+if [ $# -ge 2 ]
+then
+	TIME=$2
+else
+	TIME=90
+fi
+
+
+ffmpeg -i $INPUT -c copy -f segment -segment_time $TIME -reset_timestamps 1 $OUTPUT_%02d.MOV
+
+
