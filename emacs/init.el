@@ -350,6 +350,7 @@
       (tern-ac-setup)))
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 (setq js2-strict-missing-semi-warning nil)
+(setq js2-strict-trailing-comma-warning nil)
 
 ;; Configure imenu NOT WORKING
 (defun try-to-add-imenu ()

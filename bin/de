@@ -48,6 +48,9 @@ then
 		else
 			sudo sed -i s/.*$NAME/${IPADRESS}\	$NAME/  /etc/hosts
 		fi
+		ssh-keygen -f "/home/antoroll/.ssh/known_hosts" -R ${IPADRESS}
+		ssh-keygen -f "/home/antoroll/.ssh/known_hosts" -R ${NAME}
+		ssh-copy-id -i diya@$NAME
 		echo "Update done"
 		;;
 	* ) echo "No change done";;
