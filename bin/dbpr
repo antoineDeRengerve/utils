@@ -1,15 +1,27 @@
+#!/bin/bash
 
 echo $1
 
-diya-build -p
+diya-build -cpq
 
-cd dist
+cd dist > /dev/null
 FILES=$(find -name *.deb)
 for FILE in ${FILES}
 do
-	scp $FILE diya@$1:.
-	ssh diya@$1 sudo dpkg -i $FILE  
-	ssh diya@$1 rm $FILE
+	# Find container id
+	NAME=$(echo $1 | sed 's/\([0-9a-zA-Z]*\).*/\1/') # only first word, sanitizing
+	CONTAINER=$(docker ps | grep "\_$NAME\_")
+	CONTAINERID=${CONTAINER%% *}
+
+	if [ "$CONTAINER" == "" ]
+	then
+		echo "  $1: No container found!"
+	 	break	
+	fi
+
+	docker cp $FILE $CONTAINERID:/tmp/
+	docker exec -it $CONTAINERID dpkg -i /tmp/$FILE
+	docker exec -it $CONTAINERID rm /tmp/$FILE
 done
-cd -
+cd - > /dev/null
 

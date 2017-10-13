@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+
+function validateIP {
+	if [ $# -lt 1 ]
+	then
+		echo "Usage:"
+		echo "de <deviceName> [set-host]"
+		echo "Device name: sub of the container name (ex: d1r1)"
+		exit 1
+	fi
+
+	NAME=$(echo $1 | sed 's/\([0-9a-zA-Z]*\).*/\1/') # only first word, sanitizing
+
+	CONTAINER=$(docker ps | grep "\_$NAME\_")
+	CONTAINERID=${CONTAINER%% *}
+
+	if [ "$CONTAINER" == "" ]
+	then
+		echo "No container found!"
+		exit 1
+	fi
+
+	IPADRESS=$(docker inspect $CONTAINERID | grep Networks -A 20 | grep '"IPAddress":')
+	IPADRESS=${IPADRESS%%\",}
+	IPADRESS=${IPADRESS##*: \"}
+
+	echo "Container $NAME : $CONTAINERID [$IPADRESS]"
+
+	CURRENTIP=$(grep "\<$NAME\>" /etc/hosts)
+	CURRENTIP=$(echo $CURRENTIP | sed 's/\([0-9.]*\).*/\1/') # keep IP adress
+
+	if [ "$CURRENTIP" != "$IPADRESS"  ]
+	then
+		if [ "$CURRENTIP" == "" ]
+		then
+			echo "Updating /etc/hosts (Add IP)"
+		else
+			echo "Current IP : $CURRENTIP"
+			echo "Updating /etc/hosts (Update IP)"
+		fi
+		if [ "$CURRENTIP" == "" ]
+		then
+			sudo sed -i "3i${IPADRESS}\	$NAME"  /etc/hosts
+		else
+			sudo sed -i s/.*$NAME/${IPADRESS}\	$NAME/  /etc/hosts
+		fi
+#		ssh-keygen -f "/home/antoroll/.ssh/known_hosts" -R ${IPADRESS}
+#		ssh-keygen -f "/home/antoroll/.ssh/known_hosts" -R ${NAME}
+#		ssh-copy-id -i diya@$NAME
+		echo "Update done"
+	fi
+
+}
+
+
+SERVICES=$(grep -B 1  "extends" ${DIYA_ENV_DIR}docker-compose.yml | tr ':' ' ' | tr '\n' ' ' | sed 's/extends//g' | sed 's/--//g')
+echo "List of defined services: $SERVICES"
+
+for SERVICE in $SERVICES
+do
+	validateIP $SERVICE
+done
