@@ -1,0 +1,6 @@
+echo "Install i3"
+
+rsync ./config ~/.config/i3/config
+
+
+
