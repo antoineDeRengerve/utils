@@ -113,16 +113,16 @@ bindsym $mod+ccedilla workspace 9
 bindsym $mod+agrave workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+ampersand move container to workspace 1
-bindsym $mod+Shift+eacute move container to workspace 2
-bindsym $mod+Shift+quotedbl move container to workspace 3
-bindsym $mod+Shift+apostrophe move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+minus move container to workspace 6
-bindsym $mod+Shift+egrave move container to workspace 7
-bindsym $mod+Shift+underscore move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9
-bindsym $mod+Shift+agrave move container to workspace 10
+bindsym $mod+Shift+ampersand move container to workspace 1; workspace 1
+bindsym $mod+Shift+eacute move container to workspace 2; workspace 2
+bindsym $mod+Shift+quotedbl move container to workspace 3; workspace 3
+bindsym $mod+Shift+apostrophe move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+minus move container to workspace 6; workspace 6
+bindsym $mod+Shift+egrave move container to workspace 7; workspace 7
+bindsym $mod+Shift+underscore move container to workspace 8; workspace 8
+bindsym $mod+Shift+ccedilla move container to workspace 9; workspace 9
+bindsym $mod+Shift+agrave move container to workspace 10; workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,6 +191,9 @@ new_float normal
 # bindcode renvoie au code de la touche obtenu via l'utilitaire de test d'évenements xev", 
 # c'est donc une méthode préférable pour les touches particulières:
 bindsym $mod+Ctrl+x exec shutdown -h now
+bindsym $mod+Ctrl+n exec nautilus
+bindsym $mod+Ctrl+t exec thunar
+bindsym $mod+Ctrl+e exec emacsclient -c
 bindcode 78  exec i3lock
 
 # Raccourcis des mouvements entre espaces grâce aux touches fléchées
@@ -198,6 +201,11 @@ bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+h workspace prev 
 bindsym $mod+Ctrl+Right workspace next 
 bindsym $mod+Ctrl+l workspace next 
+
+bindsym $mod+Ctrl+Shift+Left move to workspace prev; workspace prev
+bindsym $mod+Ctrl+Shift+h move to workspace prev; workspace prev
+bindsym $mod+Ctrl+Shift+Right move to workspace next; workspace next
+bindsym $mod+Ctrl+Shift+l move to workspace next; workspace next
 
 # Raccourci pour alterner entre les modes de bordures (normale, 1 pixel ou aucune)
 bindsym $mod+b border toggle
