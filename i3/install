@@ -1,6 +1,7 @@
 echo "Install i3"
 
+sudo apt-get install pcmanfm xterm rxvt-unicode zsh htop
+
+cd xcwd && make && sudo make install && cd - > /dev/null
+
 rsync ./config ~/.config/i3/config
-
-
-

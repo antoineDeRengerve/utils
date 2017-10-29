@@ -31,6 +31,8 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec urxvt -cd "`xcwd`"
+bindsym $mod+Ctrl+Return exec xterm -e "cd `xcwd` && /bin/zsh"
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -191,9 +193,9 @@ new_float normal
 # bindcode renvoie au code de la touche obtenu via l'utilitaire de test d'évenements xev", 
 # c'est donc une méthode préférable pour les touches particulières:
 bindsym $mod+Ctrl+x exec shutdown -h now
-bindsym $mod+Ctrl+n exec nautilus
-bindsym $mod+Ctrl+t exec thunar
 bindsym $mod+Ctrl+e exec emacsclient -c
+bindsym $mod+Ctrl+n exec pcmanfm "`xcwd`"
+bindsym $mod+Ctrl+Shift+n exec pcmanfm 
 bindcode 78  exec i3lock
 
 # Raccourcis des mouvements entre espaces grâce aux touches fléchées
@@ -209,3 +211,5 @@ bindsym $mod+Ctrl+Shift+l move to workspace next; workspace next
 
 # Raccourci pour alterner entre les modes de bordures (normale, 1 pixel ou aucune)
 bindsym $mod+b border toggle
+
+
