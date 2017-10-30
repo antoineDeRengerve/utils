@@ -30,9 +30,10 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Shift+Return exec urxvt -cd "`xcwd`"
-bindsym $mod+Ctrl+Return exec xterm -e "cd `xcwd` && /bin/zsh"
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt -cd "`xcwd`"
+bindsym $mod+Shift+Return exec urxvt
+#bindsym $mod+Ctrl+Return exec xterm -e "cd `xcwd` && /bin/zsh"
 
 # kill focused window
 bindsym $mod+Shift+a kill

@@ -1,0 +1,92 @@
+! Urxvt Settings
+
+!URxvt*termName: rxvt-unicode
+URxvt*font: xft:Monospace:pixelsize=14: antialias=true
+URxvt*allow_bold: true
+URxvt*depth: 32
+! Couleur d avant plan blanc
+URxvt*foreground: white
+! Couleur d arrière plan noir
+URxvt*background: black
+
+!! Font prefferenes
+!urxvt.font: xft:DejaVu Sans Mono:pixelsize=13
+!urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=13:weight=bold
+urxvt.letterSpace: -1
+
+! Pas de barre de défilement
+URxvt*scrollBar: False
+!! Larger history limit
+urxvt.saveLines: 1000000
+
+URxvt*cursorBlink: true
+URxvt*cursorColor: #00F3FF
+
+! Lien cliquable
+! Valeur possible pour l option matcher button: 1=clic gauche, 2= clic milieu, 3=clic droit
+!URxvt.perl-ext-common:  default,matcher,tabbed
+!URxvt.urlLauncher:      firefox
+!urxvt.matcher.button: C1
+!URxvt*colorUL: #3465A4
+
+!! Change font size on Control-Plus/Minus
+URxvt.keysym.Control-0x2b: perl:font-size:increase
+URxvt.keysym.Control-0x2d: perl:font-size:decrease
+
+!URxvt.perl-ext-common: default,url-picker,clipboard
+!URxvt.keysym.C-S-c: perl:clipboard:copy
+!URxvt.keysym.C-S-v: perl:clipboard:paste
+
+! Prise en charge des onglets
+! shift+bas ou clic sur NEW= ouvrir nouvel onglet, 
+! shift + fleche gauche/droite=navigation dans les onglets. 
+! ctrl + fleche gauche/droite= deplacement onglet
+! ctrl+d ou taper exit = fermer onglet/terminal
+!URxvt.perl-ext-common:  default,tabbed
+
+
+! black
+!URxvt*color0  : #424242
+!URxvt*color8  : #000000
+! red
+!URxvt*color1  : #CC0000
+!URxvt*color9  : #EF2929
+! green
+!URxvt*color2  : #4E9A06
+!URxvt*color10 : #1CB500
+! yellow
+!URxvt*color3  : #C4A000
+!URxvt*color11 : #FCE94F
+! blue
+!URxvt*color4  : #3465A4
+!URxvt*color12 : #729FCF
+! magenta
+!URxvt*color5  : #75507B
+!URxvt*color13 : #AD7FA8
+! cyan
+!URxvt*color6  : #06989A
+!URxvt*color14 : #00F3FF
+! white
+!URxvt*color7  : #D3D7CF
+!URxvt*color15 : #EEEEEC
+
+
+!! Tango color theme
+!!! Strange - it matches tango from gnome-terminal, but looks different
+URxvt.color0: rgb:00/00/00
+URxvt.color1: rgb:CC/00/00
+URxvt.color2: rgb:4E/9A/06
+URxvt.color3: rgb:C4/A0/00
+URxvt.color4: rgb:34/65/A4
+URxvt.color5: rgb:75/50/7B
+URxvt.color6: rgb:06/98/9A
+URxvt.color7: rgb:D3/D7/CF
+URxvt.color8: rgb:55/57/53
+URxvt.color9: rgb:EF/29/29
+URxvt.color10: rgb:8A/E2/34
+URxvt.color11: rgb:FC/E9/4F
+URxvt.color12: rgb:72/9F/CF
+URxvt.color13: rgb:AD/7F/A8
+URxvt.color14: rgb:34/E2/E2
+URxvt.color15: rgb:EE/EE/EC
+URxvt.colorBD: rgb:ff/ff/ff
