@@ -181,7 +181,7 @@ focus_follows_mouse no
 workspace_auto_back_and_forth yes
    
 # Comportement des nouveaux containers (tabbed | stack | default ie tiled)
-workspace_layout tabbed
+workspace_layout default
 
 # Bordure des nouvelles fenêtres (normal | none | 1pixel | pixel n)
 # fenêtres normales:
@@ -213,4 +213,5 @@ bindsym $mod+Ctrl+Shift+l move to workspace next; workspace next
 # Raccourci pour alterner entre les modes de bordures (normale, 1 pixel ou aucune)
 bindsym $mod+b border toggle
 
-
+# background image
+exec --no-startup-id feh --bg-fill ~/Pictures/orion_wp.jpg
