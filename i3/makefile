@@ -34,3 +34,4 @@ i3-config:
 	# i3-config section
 	rsync ./config ~/.config/i3/config
 
+.PHONY: xcwd
