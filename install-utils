@@ -25,3 +25,7 @@ cd emacs
 ./install
 cd - > /dev/null
 
+# install i3 and dependencies
+cd i3
+make 
+cd - > /dev/null

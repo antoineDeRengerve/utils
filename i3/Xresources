@@ -36,9 +36,6 @@ URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.Control-0x2b: perl:font-size:increase
 URxvt.keysym.Control-0x2d: perl:font-size:decrease
 
-!URxvt.perl-ext-common: default,url-picker,clipboard
-!URxvt.keysym.C-S-c: perl:clipboard:copy
-!URxvt.keysym.C-S-v: perl:clipboard:paste
 
 ! Prise en charge des onglets
 ! shift+bas ou clic sur NEW= ouvrir nouvel onglet, 
