@@ -23,7 +23,7 @@ urxvt:
 	# font-size perl extension
 	cp ext/urxvt-font-size/font-size ~/.urxvt/ext/
 	# url-picker perl extension
-	cp ext/urxvt-font-size/font-size ~/.urxvt/ext/
+	cp ext/urxvt-url-picker/url-picker ~/.urxvt/ext/
 
 
 i3-autobuild:

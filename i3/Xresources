@@ -30,17 +30,13 @@ URxvt.iso14755_52: false
 
 ! Lien cliquable
 ! Valeur possible pour l option matcher button: 1=clic gauche, 2= clic milieu, 3=clic droit
-!URxvt.perl-ext-common:  default,matcher,tabbed,keyboard-select
-URxvt.perl-ext-common:  default,keyboard-select,font-size
+URxvt.perl-ext-common:  default,keyboard-select,font-size,matcher,url-picker
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
-!URxvt.urlLauncher:      firefox
-!urxvt.matcher.button: C1
-!URxvt*colorUL: #3465A4
-
-!! Change font size on Control-Plus/Minus
-!URxvt.keysym.Control-0x2b: perl:font-size:increase
-!URxvt.keysym.Control-0x2d: perl:font-size:decrease
+URxvt.urlLauncher:      firefox
+URxvt.matcher.button: C1
+URxvt*colorUL: #3465A4
+URxvt.keysym.C-f: perl:url-picker
 
 
 ! Prise en charge des onglets
@@ -52,34 +48,8 @@ URxvt.keysym.M-s: perl:keyboard-select:search
 ! WONT NEED TABS IF USED IN I3
 
 
-! black
-!URxvt*color0  : #424242
-!URxvt*color8  : #000000
-! red
-!URxvt*color1  : #CC0000
-!URxvt*color9  : #EF2929
-! green
-!URxvt*color2  : #4E9A06
-!URxvt*color10 : #1CB500
-! yellow
-!URxvt*color3  : #C4A000
-!URxvt*color11 : #FCE94F
-! blue
-!URxvt*color4  : #3465A4
-!URxvt*color12 : #729FCF
-! magenta
-!URxvt*color5  : #75507B
-!URxvt*color13 : #AD7FA8
-! cyan
-!URxvt*color6  : #06989A
-!URxvt*color14 : #00F3FF
-! white
-!URxvt*color7  : #D3D7CF
-!URxvt*color15 : #EEEEEC
-
 
 !! Tango color theme
-!!! Strange - it matches tango from gnome-terminal, but looks different
 URxvt.color0: rgb:00/00/00
 URxvt.color1: rgb:CC/00/00
 URxvt.color2: rgb:4E/9A/06
