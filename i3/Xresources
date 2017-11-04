@@ -22,10 +22,15 @@ urxvt.saveLines: 1000000
 URxvt*cursorBlink: true
 URxvt*cursorColor: #00F3FF
 
+! Desactivation du mode ISO14755 Ctrl-shift
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+
 ! Lien cliquable
 ! Valeur possible pour l option matcher button: 1=clic gauche, 2= clic milieu, 3=clic droit
 !URxvt.perl-ext-common:  default,matcher,tabbed,keyboard-select
-URxvt.perl-ext-common:  default,keyboard-select
+URxvt.perl-ext-common:  default,keyboard-select,font-size
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 !URxvt.urlLauncher:      firefox
@@ -33,8 +38,8 @@ URxvt.keysym.M-s: perl:keyboard-select:search
 !URxvt*colorUL: #3465A4
 
 !! Change font size on Control-Plus/Minus
-URxvt.keysym.Control-0x2b: perl:font-size:increase
-URxvt.keysym.Control-0x2d: perl:font-size:decrease
+!URxvt.keysym.Control-0x2b: perl:font-size:increase
+!URxvt.keysym.Control-0x2d: perl:font-size:decrease
 
 
 ! Prise en charge des onglets
@@ -43,6 +48,7 @@ URxvt.keysym.Control-0x2d: perl:font-size:decrease
 ! ctrl + fleche gauche/droite= deplacement onglet
 ! ctrl+d ou taper exit = fermer onglet/terminal
 !URxvt.perl-ext-common:  default,tabbed
+! WONT NEED TABS IF USED IN I3
 
 
 ! black

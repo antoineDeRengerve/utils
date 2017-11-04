@@ -18,6 +18,8 @@ urxvt:
 	mkdir -p ~/.urxvt/ext
 	# keyboard-select perl extension
 	cp ext/urxvt-perls/keyboard-select ~/.urxvt/ext/
+	# font-size perl extension
+	cp ext/urxvt-font-size/font-size ~/.urxvt/ext/
 
 
 i3-autobuild:
