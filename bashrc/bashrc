@@ -23,8 +23,6 @@ export LC_ADDRESS=fr_FR.UTF-8
 export LC_TELEPHONE=fr_FR.UTF-8
 export LC_MEASUREMENT=fr_FR.UTF-8
 
-# Better colors in terminal
-export TERM=xterm-256color
 
 #CUSTOM
 if [ -d $HOME/.bashrc.d ]
