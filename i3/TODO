@@ -3,9 +3,9 @@ TODO
 
 # URXVT
 - [X] C-A C / C-A V
-- [ ] use client/daemon
-- [ ] C arrows to move around
-- [ ] begin/end of line
-- [ ] vim visual line does not show in urxvt
-- [ ] segfault with urxvt : usecase : tabbed/stacked or only window. No issue when in split view: test without any options: no trouble without options. One of mine makes it blow out.
+- [X] use client/daemon
+- [ ] C arrows to move around : is it really necessary ? can use emacs controls
+- [ ] begin/end of line : ???
+- [X] vim visual line does not show in urxvt
+- [X] segfault with urxvt : usecase : tabbed/stacked or only window. No issue when in split view: test without any options: no trouble without options. One of mine makes it blow out.
 - [ ] perl: url-picker launcher for hyperlinks

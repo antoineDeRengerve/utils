@@ -31,8 +31,9 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec urxvt -cd "`xcwd`"
-bindsym $mod+Shift+Return exec urxvt
+bindsym $mod+Return exec urxvtc -cd "`xcwd`"
+bindsym $mod+Shift+Return exec urxvtc
+bindsym $mod+Ctrl+Return exec urxvt -cd "`xcwd`"
 #bindsym $mod+Ctrl+Return exec xterm -e "cd `xcwd` && /bin/zsh"
 
 # kill focused window
