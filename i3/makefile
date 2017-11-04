@@ -20,6 +20,8 @@ urxvt:
 	cp ext/urxvt-perls/keyboard-select ~/.urxvt/ext/
 	# font-size perl extension
 	cp ext/urxvt-font-size/font-size ~/.urxvt/ext/
+	# url-picker perl extension
+	cp ext/urxvt-font-size/font-size ~/.urxvt/ext/
 
 
 i3-autobuild:
