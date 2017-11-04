@@ -1,6 +1,6 @@
 ! Urxvt Settings
 
-!URxvt*termName: rxvt-unicode
+URxvt*termName: rxvt-unicode
 URxvt*font: xft:Monospace:pixelsize=14: antialias=true
 URxvt*allow_bold: true
 URxvt*depth: 32
@@ -16,8 +16,9 @@ urxvt.letterSpace: -1
 
 ! Pas de barre de défilement
 URxvt*scrollBar: False
-!! Larger history limit
-urxvt.saveLines: 1000000
+! Larger history limit - rq: use screen or tmux for larger history?
+! Not too big a size to avoid consumming to much ressources
+urxvt.saveLines: 50000
 
 URxvt*cursorBlink: true
 URxvt*cursorColor: #00F3FF
