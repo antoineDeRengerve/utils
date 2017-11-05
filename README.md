@@ -14,8 +14,12 @@ Some usefool tools
 # TODO
 - [ ] schroot basic script
 - [ ] docker configuration
+- [ ] autojump
 
 ## i3
+
+- [ ] pcmanfm : open in terminal ?
+
 
 ### URXVT
 - [X] C-A C / C-A V
