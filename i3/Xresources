@@ -30,18 +30,15 @@ URxvt.iso14755_52: false
 
 ! Lien cliquable
 ! Valeur possible pour l option matcher button: 1=clic gauche, 2= clic milieu, 3=clic droit
-URxvt.perl-ext-common:  default,keyboard-select,font-size,matcher,url-picker,clipboard
+URxvt.perl-ext-common:  default,keyboard-select,font-size,matcher,url-picker,selection-to-clipboard
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.urlLauncher:      firefox
 URxvt.matcher.button: C1
 URxvt*colorUL: #3465A4
-URxvt.keysym.C-S-f: perl:url-picker
-! clipboard options
-URxvt.clipboard.autocopy: true
-URxvt.keysym.C-S-c: perl:clipboard:copy
-URxvt.keysym.C-S-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.Shift-Control-F: perl:url-picker
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
 ! Prise en charge des onglets
 ! shift+bas ou clic sur NEW= ouvrir nouvel onglet, 

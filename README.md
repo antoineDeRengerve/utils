@@ -30,9 +30,9 @@ Some usefool tools
 - [X] segfault with urxvt : usecase : tabbed/stacked or only window. No issue when in split view: test without any options: no trouble without options. One of mine makes it blow out.
 - [X] perl: url-picker launcher for hyperlinks
 - [ ] learn more about emacs control in terminal like urxvt
-- [ ] clipboard : auto clipboard for selection + C-S c/v for copying
-- [ ] add xsel in dependencies
-- [ ] opening terminal in new place not ok for urxvtc ? To be checked...
-- [ ] remove service daemon as it does not work correctly with xwcd
+- [X] clipboard : auto clipboard for selection + C-S c/v for copying : selection-to-clipboard OK and C-M C/V is OK.
+- [X] add xsel in dependencies
+- [X] opening terminal in new place not ok for urxvtc ? Should not be using urxvtc, keeping service and socket.
+- [X] remove service daemon as it does not work correctly with xwcd. Keeping service just in case.
 
  
