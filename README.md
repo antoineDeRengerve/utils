@@ -14,7 +14,7 @@ Some usefool tools
 # TODO
 - [ ] schroot basic script
 - [ ] docker configuration
-- [ ] autojump
+- [X] autojump
 
 ## i3
 

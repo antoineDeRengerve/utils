@@ -10,6 +10,9 @@ mkdir -p $BASHDIR
 BASHUTIL=$BASHDIR/bashrc.utils
 echo "" > $BASHUTIL
 echo "export PATH=\$PATH:${CURRPATH}/bin:${CURRPATH}/R" >> $BASHUTIL
+# autojump configuration
+echo 'export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"' >> $BASHUTIL
+echo '. /usr/share/autojump/autojump.sh' >> $BASHUTIL
 chmod 755 $BASHUTIL
 
 cp git-completion.bash $BASHDIR
