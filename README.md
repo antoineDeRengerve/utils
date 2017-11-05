@@ -33,4 +33,6 @@ Some usefool tools
 - [ ] clipboard : auto clipboard for selection + C-S c/v for copying
 - [ ] add xsel in dependencies
 - [ ] opening terminal in new place not ok for urxvtc ? To be checked...
+- [ ] remove service daemon as it does not work correctly with xwcd
+
  
