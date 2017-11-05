@@ -18,10 +18,11 @@ Some usefool tools
 
 ## i3
 
-- [ ] pcmanfm : open in terminal ?
+- [X] pcmanfm : open in terminal : use F4 (tools open terminal)
 
 
 ### URXVT
+- [X] setting urxvt as default terminal
 - [X] C-A C / C-A V
 - [X] use client/daemon
 - [X] C arrows to move around : OK but use emacs controls
@@ -29,7 +30,7 @@ Some usefool tools
 - [X] vim visual line does not show in urxvt
 - [X] segfault with urxvt : usecase : tabbed/stacked or only window. No issue when in split view: test without any options: no trouble without options. One of mine makes it blow out.
 - [X] perl: url-picker launcher for hyperlinks
-- [ ] learn more about emacs control in terminal like urxvt
+- [X] learn more about emacs control in terminal like urxvt
 - [X] clipboard : auto clipboard for selection + C-S c/v for copying : selection-to-clipboard OK and C-M C/V is OK.
 - [X] add xsel in dependencies
 - [X] opening terminal in new place not ok for urxvtc ? Should not be using urxvtc, keeping service and socket.

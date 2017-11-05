@@ -4,7 +4,7 @@ all: install xcwd urxvt i3-autobuild i3-config
 
 install:
 	# install section
-	sudo apt-get install pcmanfm xterm rxvt-unicode zsh htop feh xsel
+	sudo apt-get install pcmanfm xterm rxvt-unicode zsh htop feh xsel autojump
 
 xcwd:
 	# xcwd section
@@ -24,6 +24,8 @@ urxvt:
 	cp ext/urxvt-font-size/font-size ~/.urxvt/ext/
 	# url-picker perl extension
 	cp ext/urxvt-url-picker/url-picker ~/.urxvt/ext/
+	# change default terminator
+	sudo update-alternatives --config x-terminal-emulator
 
 
 i3-autobuild:
