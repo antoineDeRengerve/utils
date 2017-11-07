@@ -1,0 +1,35 @@
+// vim:ts=4:sw=4:et
+{
+    // tabbed split container with 1 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+//            "geometry": {
+//               "height": 719,
+//               "width": 1366,
+//               "x": 0,
+//               "y": 49
+//            },
+            "name": "New Tab - Chromium",
+            "percent": 1,
+            "swallows": [
+               {
+                  "class": "^Chromium\\-browser$"
+               // "instance": "^chromium\\-browser$",
+               // "title": "^New\\ Tab\\ \\-\\ Chromium$",
+               // "transient_for": "^$",
+               // "window_role": "^browser$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

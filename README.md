@@ -19,6 +19,11 @@ Some usefool tools
 ## i3
 
 - [X] pcmanfm : open in terminal : use F4 (tools open terminal)
+- [ ] initial layout configuration
+  - [X] chromium, emacs
+  - [ ] firefox, email, zim, tasks
+  - [ ] terminal with standard configuration : name terminals
+  - [ ] launch processes at startup of i3
 
 
 ### URXVT
@@ -35,5 +40,5 @@ Some usefool tools
 - [X] add xsel in dependencies
 - [X] opening terminal in new place not ok for urxvtc ? Should not be using urxvtc, keeping service and socket.
 - [X] remove service daemon as it does not work correctly with xwcd. Keeping service just in case.
-
+- [ ] do not display _ (underscore) character in terminal
  

@@ -1,5 +1,5 @@
 
-all: install xcwd urxvt i3-autobuild i3-config
+all: install xcwd urxvt i3-autobuild i3-config i3-layout
 	echo "i3 installation success"
 
 install:
@@ -40,6 +40,14 @@ i3-autobuild:
 
 i3-config:
 	# i3-config section
+	mkdir -p ~/.config/i3
 	rsync ./config ~/.config/i3/config
+
+i3-layout:
+	# i3-layout section
+	mkdir -p ~/.config/i3
+	rsync -r ./layouts/ ~/.config/i3/layouts/
+	
+
 
 .PHONY: xcwd
