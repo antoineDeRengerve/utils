@@ -197,7 +197,10 @@ bindsym $mod+Ctrl+x exec shutdown -h now
 bindsym $mod+Ctrl+e exec emacsclient -c --name emacs-client
 bindsym $mod+Ctrl+n exec pcmanfm "`xcwd`"
 bindsym $mod+Ctrl+Shift+n exec pcmanfm 
-bindcode 78  exec i3lock
+bindsym $mod+Ctrl+s exec xrandr --output eDP1 --off # disable internal screen
+bindsym $mod+Ctrl+Shift+s exec xrandr --output eDP1 --auto # activate internal screen
+bindsym $mod+Ctrl+mod1+l exec i3lock # lock screen
+bindcode 78  exec i3lock # lock screen
 
 # Raccourcis des mouvements entre espaces grâce aux touches fléchées
 bindsym $mod+Ctrl+Left workspace prev 
@@ -221,7 +224,13 @@ exec --no-startup-id feh --bg-fill ~/Pictures/orion_wp.jpg
 # In your i3 configuration file, you can autostart i3-msg like this:
 # (Note that those lines will quickly become long, so typically you would store
 #  them in a script with proper indentation.)
+exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/layouts/workspace-1.json'"
 exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/layouts/workspace-8.json'"
 exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/layouts/workspace-9.json'"
 exec --no-startup-id "i3-msg 'workspace 10; append_layout ~/.config/i3/layouts/workspace-10.json'"
+
+# Launch applications on startup
+exec --no-startup-id "launch2"
+# Specific urxvt
+exec --no-startup-id "urxvt"
 
