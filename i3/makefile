@@ -4,7 +4,7 @@ all: install xcwd urxvt i3-autobuild i3-config i3-layout
 
 install:
 	# install section
-	sudo apt-get install pcmanfm rxvt-unicode zsh htop feh xsel autojump
+	sudo apt-get install pcmanfm rxvt-unicode htop feh xsel autojump
 
 xcwd:
 	# xcwd section
