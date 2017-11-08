@@ -45,7 +45,7 @@
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                       // "class": "^URxvt$",
+                                          "class": "^URxvt$"
                                        // "instance": "^urxvt$",
                                        // "title": "^urxvt$",
                                        // "transient_for": "^$"
@@ -67,7 +67,7 @@
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                       // "class": "^URxvt$",
+                                          "class": "^URxvt$"
                                        // "instance": "^urxvt$",
                                        // "title": "^urxvt$",
                                        // "transient_for": "^$"
@@ -99,7 +99,7 @@
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                       // "class": "^URxvt$",
+                                          "class": "^URxvt$"
                                        // "instance": "^urxvt$",
                                        // "title": "^urxvt$",
                                        // "transient_for": "^$"
@@ -121,7 +121,7 @@
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                       // "class": "^URxvt$",
+                                          "class": "^URxvt$"
                                        // "instance": "^urxvt$",
                                        // "title": "^urxvt$",
                                        // "transient_for": "^$"
@@ -157,7 +157,7 @@
                     "percent": 0.5,
                     "swallows": [
                        {
-                       // "class": "^URxvt$",
+                          "class": "^URxvt$"
                        // "instance": "^urxvt$",
                        // "title": "^urxvt$",
                        // "transient_for": "^$"
@@ -179,7 +179,7 @@
                     "percent": 0.5,
                     "swallows": [
                        {
-                       // "class": "^URxvt$",
+                          "class": "^URxvt$"
                        // "instance": "^urxvt$",
                        // "title": "^urxvt$",
                        // "transient_for": "^$"
