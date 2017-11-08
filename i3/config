@@ -201,6 +201,7 @@ bindsym $mod+Ctrl+s exec xrandr --output eDP1 --off # disable internal screen
 bindsym $mod+Ctrl+Shift+s exec xrandr --output eDP1 --auto # activate internal screen
 bindsym $mod+Ctrl+mod1+l exec i3lock # lock screen
 bindcode 78  exec i3lock # lock screen
+bindsym $mod+Ctrl+p exec "scrot ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
 
 # Raccourcis des mouvements entre espaces grâce aux touches fléchées
 bindsym $mod+Ctrl+Left workspace prev 

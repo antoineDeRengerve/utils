@@ -20,9 +20,10 @@ Some usefool tools
 
 - [X] pcmanfm : open in terminal : use F4 (tools open terminal)
 - [ ] unlock gnome-keyring upon startup with i3 ?
+- [ ] screenshot with imprim ecran ?
 - [ ] initial layout configuration
   - [X] chromium, emacs
-  - [ ] firefox, email, zim, tasks
+  - [X] firefox, email, zim, tasks
   - [ ] terminal with standard configuration : name terminals
   - [ ] launch processes at startup of i3
 
