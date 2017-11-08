@@ -13,6 +13,7 @@ URxvt*background: black
 !urxvt.font: xft:DejaVu Sans Mono:pixelsize=13
 !urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=13:weight=bold
 urxvt.letterSpace: -1
+URxvt.lineSpace: 1
 
 ! Pas de barre de défilement
 URxvt*scrollBar: False

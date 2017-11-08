@@ -21,8 +21,8 @@
             "percent": 0.25,
             "swallows": [
                {
-                  "class": "^libreoffice\\-calc$"
-               // "instance": "^libreoffice$",
+               // "class": "^libreoffice\\-calc$"
+                  "instance": "^libreoffice$"
                // "title": "^TaskList\\.ods\\ \\-\\ LibreOffice\\ Calc$"
                // "transient_for": "^$"
                }

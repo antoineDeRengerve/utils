@@ -20,12 +20,12 @@ Some usefool tools
 
 - [X] pcmanfm : open in terminal : use F4 (tools open terminal)
 - [ ] unlock gnome-keyring upon startup with i3 ?
-- [ ] screenshot with imprim ecran ?
-- [ ] initial layout configuration
+- [X] screenshot with imprim ecran ?
+- [X] initial layout configuration
   - [X] chromium, emacs
   - [X] firefox, email, zim, tasks
-  - [ ] terminal with standard configuration : name terminals
-  - [ ] launch processes at startup of i3
+  - [X] terminal with standard configuration : name terminals
+  - [X] launch processes at startup of i3. Rq: must quit libreoffice and zim before leaving
 
 
 ### URXVT
@@ -42,5 +42,5 @@ Some usefool tools
 - [X] add xsel in dependencies
 - [X] opening terminal in new place not ok for urxvtc ? Should not be using urxvtc, keeping service and socket.
 - [X] remove service daemon as it does not work correctly with xwcd. Keeping service just in case.
-- [ ] do not display _ (underscore) character in terminal
+- [X] do not display _ (underscore) character in terminal
  
