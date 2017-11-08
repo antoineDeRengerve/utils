@@ -226,6 +226,8 @@ exec --no-startup-id feh --bg-fill ~/Pictures/orion_wp.jpg
 # (Note that those lines will quickly become long, so typically you would store
 #  them in a script with proper indentation.)
 exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/layouts/workspace-1.json'"
+exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/layouts/workspace-2.json'"
+exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/layouts/workspace-3.json'"
 exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/layouts/workspace-8.json'"
 exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/layouts/workspace-9.json'"
 exec --no-startup-id "i3-msg 'workspace 10; append_layout ~/.config/i3/layouts/workspace-10.json'"
