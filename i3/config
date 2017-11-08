@@ -235,3 +235,5 @@ exec --no-startup-id "i3-msg 'workspace 10; append_layout ~/.config/i3/layouts/w
 # Launch applications on startup
 exec --no-startup-id "launch2"
 
+exec --no-startup-id "i3-msg 'workspace 1'"
+

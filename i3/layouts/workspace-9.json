@@ -4,7 +4,7 @@
     "border": "pixel",
     "floating": "auto_off",
     "layout": "tabbed",
-    "percent": null,
+    "percent": 1,
     "type": "con",
     "nodes": [
         {
@@ -41,13 +41,13 @@
                                        "x": 0,
                                        "y": 0
                                     },
-                                    "name": "urxvt",
+                                    "name": "gitlab",
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                          "class": "^URxvt$"
-                                       // "instance": "^urxvt$",
-                                       // "title": "^urxvt$",
+                                          "class": "^URxvt$",
+                                          "instance": "^gitlab$"
+                                       // "title": "^gitlab$",
                                        // "transient_for": "^$"
                                        }
                                     ],
@@ -63,13 +63,13 @@
                                        "x": 0,
                                        "y": 0
                                     },
-                                    "name": "urxvt",
+                                    "name": "gitlab",
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                          "class": "^URxvt$"
-                                       // "instance": "^urxvt$",
-                                       // "title": "^urxvt$",
+                                          "class": "^URxvt$",
+                                          "instance": "^gitlab$"
+                                       // "title": "^gitlab$",
                                        // "transient_for": "^$"
                                        }
                                     ],
@@ -95,13 +95,13 @@
                                        "x": 0,
                                        "y": 0
                                     },
-                                    "name": "urxvt",
+                                    "name": "diya-node",
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                          "class": "^URxvt$"
-                                       // "instance": "^urxvt$",
-                                       // "title": "^urxvt$",
+                                          "class": "^URxvt$",
+                                          "instance": "^diya\\-node$"
+                                       // "title": "^diya\\-node$",
                                        // "transient_for": "^$"
                                        }
                                     ],
@@ -117,13 +117,13 @@
                                        "x": 0,
                                        "y": 0
                                     },
-                                    "name": "urxvt",
+                                    "name": "github",
                                     "percent": 0.5,
                                     "swallows": [
                                        {
-                                          "class": "^URxvt$"
-                                       // "instance": "^urxvt$",
-                                       // "title": "^urxvt$",
+                                          "class": "^URxvt$",
+                                          "instance": "^github$"
+                                       // "title": "^github$",
                                        // "transient_for": "^$"
                                        }
                                     ],
@@ -153,13 +153,13 @@
                        "x": 0,
                        "y": 0
                     },
-                    "name": "urxvt",
+                    "name": "diya-env",
                     "percent": 0.5,
                     "swallows": [
                        {
-                          "class": "^URxvt$"
-                       // "instance": "^urxvt$",
-                       // "title": "^urxvt$",
+                          "class": "^URxvt$",
+                          "instance": "^diya\\-env$"
+                       // "title": "^diya\\-env$",
                        // "transient_for": "^$"
                        }
                     ],
@@ -175,13 +175,13 @@
                        "x": 0,
                        "y": 0
                     },
-                    "name": "urxvt",
+                    "name": "diya-env",
                     "percent": 0.5,
                     "swallows": [
                        {
-                          "class": "^URxvt$"
-                       // "instance": "^urxvt$",
-                       // "title": "^urxvt$",
+                          "class": "^URxvt$",
+                          "instance": "^diya\\-env$"
+                       // "title": "^diya\\-env$",
                        // "transient_for": "^$"
                        }
                     ],
