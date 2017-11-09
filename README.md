@@ -21,6 +21,7 @@ Some usefool tools
 - [X] pcmanfm : open in terminal : use F4 (tools open terminal)
 - [ ] unlock gnome-keyring upon startup with i3 ?
 - [X] screenshot with imprim ecran ?
+- [ ] automatic screen lock after some time
 - [X] initial layout configuration
   - [X] chromium, emacs
   - [X] firefox, email, zim, tasks
