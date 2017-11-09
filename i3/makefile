@@ -15,8 +15,6 @@ urxvt:
 	cp /etc/inputrc ~/.inputrc
 	cp Xresources ~/.Xresources
 	xrdb ~/.Xresources
-	mkdir -p ~/.config/systemd/user/
-	cp urxvtd.service urxvtd.socket ~/.config/systemd/user/
 	mkdir -p ~/.urxvt/ext
 	# keyboard-select perl extension
 	cp ext/urxvt-perls/keyboard-select ~/.urxvt/ext/
