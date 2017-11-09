@@ -189,6 +189,24 @@ new_window 1pixel
 # fenêtres flottantes:
 new_float normal
 
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Escape mode "$mode_system"
+
 # Il est possible de définir des raccourcis d'applications de 2 façons:
 # bindsym renvoie au symbole de la touche (ça peut être aléatoire selon la disposition du clavier);
 # bindcode renvoie au code de la touche obtenu via l'utilitaire de test d'évenements xev", 
@@ -199,10 +217,27 @@ bindsym $mod+Ctrl+n exec pcmanfm "`xcwd`"
 bindsym $mod+Ctrl+Shift+n exec pcmanfm 
 bindsym $mod+Ctrl+s exec xrandr --output eDP1 --off # disable internal screen
 bindsym $mod+Ctrl+Shift+s exec xrandr --output eDP1 --auto # activate internal screen
-bindsym $mod+Ctrl+mod1+l exec i3lock # lock screen
-bindcode 78  exec i3lock # lock screen
+bindsym $mod+Ctrl+mod1+l exec $Locker # lock screen
+bindcode 78  exec $Locker # lock screen
 bindsym $mod+Ctrl+p exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
 bindsym --release Print exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
+
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+mode "$mode_display" {
+    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"
+ 
 
 # Raccourcis des mouvements entre espaces grâce aux touches fléchées
 bindsym $mod+Ctrl+Left workspace prev 
@@ -237,4 +272,6 @@ exec --no-startup-id "i3-msg 'workspace 10; append_layout ~/.config/i3/layouts/w
 exec --no-startup-id "launch2"
 
 exec --no-startup-id "i3-msg 'workspace 1'"
+
+exec --no-startup-id "xautolock -time 10 -locker \\"i3lock -i 'background_image.png'\\" &"
 
