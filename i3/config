@@ -215,8 +215,6 @@ bindsym $mod+Ctrl+x exec shutdown -h now
 bindsym $mod+Ctrl+e exec emacsclient -c --name emacs-client
 bindsym $mod+Ctrl+n exec pcmanfm "`xcwd`"
 bindsym $mod+Ctrl+Shift+n exec pcmanfm 
-bindsym $mod+Ctrl+s exec xrandr --output eDP1 --off # disable internal screen
-bindsym $mod+Ctrl+Shift+s exec xrandr --output eDP1 --auto # activate internal screen
 bindsym $mod+Ctrl+mod1+l exec $Locker # lock screen
 bindcode 78  exec $Locker # lock screen
 bindsym $mod+Ctrl+p exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
@@ -224,12 +222,16 @@ bindsym --release Print exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
-set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (V) VGA OFF, (H) HDMI OFF, (i) internal ON, (I) internal OFF, (l) LVDS OFF, (L) LVDS OFF
 mode "$mode_display" {
     bindsym v exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1, mode "default"
     bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
-    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
-    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+    bindsym Shift+V exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
+    bindsym Shift+H exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+    bindsym i exec xrandr --output eDP1 --auto # activate internal screen
+    bindsym Shift+I exec xrandr --output eDP1 --off # disable internal screen
+    bindsym l exec xrandr --output LVDS1 --auto # activate internal screen
+    bindsym Shift+L exec xrandr --output LVDS1 --off # disable internal screen
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -254,7 +256,7 @@ bindsym $mod+Ctrl+Shift+l move to workspace next; workspace next
 bindsym $mod+b border toggle
 
 # background image
-exec --no-startup-id feh --bg-fill ~/Pictures/orion_wp.jpg
+exec --no-startup-id "feh --bg-fill ~/Pictures/orion_wp.jpg"
 
 # Layout
 
