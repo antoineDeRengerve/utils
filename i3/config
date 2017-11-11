@@ -273,5 +273,7 @@ exec --no-startup-id "launch2"
 
 exec --no-startup-id "i3-msg 'workspace 1'"
 
-exec --no-startup-id "xautolock -time 10 -locker \\"i3lock -i 'background_image.png'\\" &"
+#exec --no-startup-id "xautolock -time 10 -locker \\"i3lock -i 'background_image.png'\\" &"
 
+# nm-applet to manage wifi
+exec --no-startup-id "nm-applet"
