@@ -228,14 +228,15 @@ mode "$mode_display" {
     bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
     bindsym Shift+V exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
     bindsym Shift+H exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
-    bindsym i exec xrandr --output eDP1 --auto # activate internal screen
-    bindsym Shift+I exec xrandr --output eDP1 --off # disable internal screen
-    bindsym l exec xrandr --output LVDS1 --auto # activate internal screen
-    bindsym Shift+L exec xrandr --output LVDS1 --off # disable internal screen
+    bindsym i exec xrandr --output eDP1 --auto, mode "default" # activate internal screen
+    bindsym Shift+I exec xrandr --output eDP1 --off, mode "default" # disable internal screen
+    bindsym l exec xrandr --output LVDS1 --auto, mode "default" # activate internal screen
+    bindsym Shift+L exec xrandr --output LVDS1 --off, mode "default" # disable internal screen
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym space mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+x mode "$mode_display"
