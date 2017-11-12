@@ -164,7 +164,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        tray_output primary
+        #tray_output primary ## Commented out because it seemed to conflict with nm-applet
 # définition des couleurs des noms d'espaces de travail dans i3bar:
  	colors {
  		# <bordure> <arrière plan> <texte>
