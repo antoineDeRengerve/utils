@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ 
+wmctrl -c firefox
+wmctrl -c evolution
+wmctrl -c zim
+wmctrl -c openoffice
+
+pkill -15 -f "pcmanfm"
+pkill -15 -f "emacsclient"
+pkill -15 -f "chromium-browser"
+
+
+
