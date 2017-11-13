@@ -5,6 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -176,10 +177,10 @@ bar {
 
 # Le focus ne suit pas la souris (évite le coup de paume sur le touchpad)
 focus_follows_mouse no
-  
+
 # Lors du passage à un workspace, retaper le raccourci de ce workspace ramène à celui dont je viens
 workspace_auto_back_and_forth yes
-   
+
 # Comportement des nouveaux containers (tabbed | stack | default ie tiled)
 workspace_layout default
 
@@ -200,22 +201,24 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id at_exit; systemctl poweroff -i, mode "default"
+    bindsym k exec --no-startup-id at_exit
+    bindsym Shift+s exec --no-startup-id at_exit, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym space mode "default"
 }
 
 bindsym $mod+Escape mode "$mode_system"
 
 # Il est possible de définir des raccourcis d'applications de 2 façons:
 # bindsym renvoie au symbole de la touche (ça peut être aléatoire selon la disposition du clavier);
-# bindcode renvoie au code de la touche obtenu via l'utilitaire de test d'évenements xev", 
+# bindcode renvoie au code de la touche obtenu via l'utilitaire de test d'évenements xev",
 # c'est donc une méthode préférable pour les touches particulières:
 bindsym $mod+Ctrl+e exec emacsclient -c
 bindsym $mod+Ctrl+n exec pcmanfm "`xcwd`"
-bindsym $mod+Ctrl+Shift+n exec pcmanfm 
+bindsym $mod+Ctrl+Shift+n exec pcmanfm
 bindsym $mod+Ctrl+mod1+l exec $Locker # lock screen
 bindcode 78  exec $Locker # lock screen
 bindsym $mod+Ctrl+p exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
@@ -229,10 +232,14 @@ mode "$mode_display" {
     bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
     bindsym Shift+V exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
     bindsym Shift+H exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
-    bindsym i exec xrandr --output eDP1 --auto, mode "default" # activate internal screen
-    bindsym Shift+I exec xrandr --output eDP1 --off, mode "default" # disable internal screen
-    bindsym l exec xrandr --output LVDS1 --auto, mode "default" # activate internal screen
-    bindsym Shift+L exec xrandr --output LVDS1 --off, mode "default" # disable internal screen
+    # activate internal screen
+    bindsym i exec xrandr --output eDP1 --auto, mode "default"
+    # disable internal screen
+    bindsym Shift+I exec xrandr --output eDP1 --off, mode "default"
+    # activate internal screen
+    bindsym l exec xrandr --output LVDS1 --auto, mode "default"
+    # disable internal screen
+    bindsym Shift+L exec xrandr --output LVDS1 --off, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -241,13 +248,13 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+x mode "$mode_display"
- 
+
 
 # Raccourcis des mouvements entre espaces grâce aux touches fléchées
-bindsym $mod+Ctrl+Left workspace prev 
-bindsym $mod+Ctrl+h workspace prev 
-bindsym $mod+Ctrl+Right workspace next 
-bindsym $mod+Ctrl+l workspace next 
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+l workspace next
 
 bindsym $mod+Ctrl+Shift+Left move to workspace prev; workspace prev
 bindsym $mod+Ctrl+Shift+h move to workspace prev; workspace prev
