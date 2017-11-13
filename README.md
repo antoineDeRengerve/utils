@@ -19,7 +19,8 @@ Some usefool tools
 ## i3
 
 - [ ] automatic screen lock after some time
-- [ ] screen saver when screen is locked
+- [ ] screen saver when screen is locked 
+- [ ] screen power off after some time of inactivity + deactivated or not this mode
 - [ ] use mode for exiting i3
 - [ ] unlock gnome-keyring upon startup with i3 ? May be useful for evolution but not confirmed.
 - [ ] automount or allow to enter password for validating automount. In case of need: use udisksctl mount -b /dev/sdb1
