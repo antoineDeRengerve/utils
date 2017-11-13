@@ -20,6 +20,7 @@ Some usefool tools
 
 - [ ] automatic screen lock after some time
 - [ ] screen saver when screen is locked
+- [ ] use mode for exiting i3
 - [ ] unlock gnome-keyring upon startup with i3 ? May be useful for evolution but not confirmed.
 - [ ] automount or allow to enter password for validating automount. In case of need: use udisksctl mount -b /dev/sdb1
 - [X] pcmanfm : open in terminal : use F4 (tools open terminal)
