@@ -4,11 +4,19 @@
 wmctrl -c firefox
 wmctrl -c evolution
 wmctrl -c zim
-wmctrl -c openoffice
+wmctrl -c libreoffice
 
 pkill -15 -f "pcmanfm"
 pkill -15 -f "emacsclient"
 pkill -15 -f "chromium-browser"
 
+i3-nagbar -t warning -m 'Exiting now'
+
+systemctl poweroff -i
+
+sleep 1
+
+i3-msg workspace 1
+urxvt -e sudo systemctl poweroff -i
 
 
