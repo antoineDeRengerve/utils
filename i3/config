@@ -228,8 +228,8 @@ bindsym --release Print exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S
 # Set the shortcuts and what they do
 set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (V) VGA OFF, (H) HDMI OFF, (i) internal ON, (I) internal OFF, (l) LVDS OFF, (L) LVDS OFF
 mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1, mode "default"
-    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
+    bindsym v exec --no-startup-id xrandr --output VGA1 --auto, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto, mode "default"
     bindsym Shift+V exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
     bindsym Shift+H exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
     # activate internal screen
