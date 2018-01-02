@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+find . -path '*.mkv' | while read FILE
+do
+	SRT=$FILE
+	MP4=${SRT/mkv/mp4}
+	myffmpeg -i $SRT -vf scale=720:-1 -vcodec libx264 -map 0 -crf 23 -c:s mov_text $MP4
+	echo "Converted $SRT into $MP4"
+done
+
+
+
+# mkvmerge -o $MKV $SRT
+# echo "Mkv generated"
+
+
