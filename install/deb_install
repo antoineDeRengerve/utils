@@ -6,6 +6,9 @@ sudo apt-get install unetbootin unrar valgrind velocity wireshark zim ffmpeg ubu
 # TODO install external packages : xmind, master-pdf-editor, adobe-reader, ganttproject, team-viewer
 echo "DEBIAN PACKAGES INSTALL DONE"
 
+echo "Mkv management"
+echo "See mkvtoolnix mkvtoolnix-gui mediainfo"
+
 echo "Config ZIM"
 sudo apt-get install python-gtksourceview2
 sudo apt-get install python-gtkspellcheck 
