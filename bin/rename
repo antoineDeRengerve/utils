@@ -1,5 +1,14 @@
 #/bin/bash
 
+EXT=m2ts
+
+if [ $# -ge 1 ]
+then
+	EXT=$1
+fi
+echo $EXT
+
+
 
 find . -path '*.m2ts.idx' | while read FILE
 do
@@ -7,13 +16,19 @@ do
 	echo "Removed $FILE"
 done
 
-find . -path '* - *.m2ts' | while read FILE
+find . -path '* - *.$EXT' | while read FILE
 do
 	NAME=${FILE#* - }
 	NAME=${NAME% - *}
-	#NAME=${NAME// /_}
-	mv "$FILE" "$NAME.m2ts"
-	echo "Moved recording to $NAME.m2ts"
+	NAME=${NAME// /_}
+	mv "$FILE" "$NAME.$EXT"
+	echo "Moved recording to $NAME.$EXT"
 done
 
+find . -path '* *.$EXT' | while read FILE
+do
+	NAME=${FILE// /_}
+	mv "$FILE" "$NAME"
+	echo "Moved recording to $NAME"
+done
 
