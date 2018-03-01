@@ -222,7 +222,9 @@ bindsym $mod+Ctrl+Shift+n exec pcmanfm
 bindsym $mod+Ctrl+mod1+l exec $Locker # lock screen
 bindcode 78  exec $Locker # lock screen
 bindsym $mod+Ctrl+p exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
+bindsym $mod+Ctrl+Shift+p exec "scrot -s ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
 bindsym --release Print exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
+bindsym --release Shift+Print exec "scrot -s ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
