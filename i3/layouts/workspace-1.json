@@ -40,12 +40,12 @@
                "x": 0,
                "y": 24
             },
-            "name": "Boîte de réception (1 unread) - Evolution",
+            "name": "Inbox - Mozilla Thunderbird",
             "percent": 0.25,
             "swallows": [
                {
-                  "class": "^Evolution$"
-               // "instance": "^evolution$",
+                  "class": "^Thunderbird$"
+               // "instance": "^thunderbird$",
                // "title": "^Boîte\\ de\\ réception\\ \\(1\\ unread\\)\\ \\-\\ Evolution$",
                // "transient_for": "^$",
                // "window_role": "^EShellWindow\\-94406056526640$"
