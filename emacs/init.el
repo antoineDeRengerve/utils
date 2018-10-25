@@ -28,6 +28,10 @@
 ;; Pour afficher le numéro de la ligne courante :
 (line-number-mode 1)
 
+;; Remove scroll/menu/tool bar
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+;(menu-bar-mode -1)
 
 
 ;; Pour avoir une touche Delete qui efface bien en arrière :
