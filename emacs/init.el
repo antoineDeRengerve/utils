@@ -2,7 +2,7 @@
 ;; http://www.ensem.inpl-nancy.fr/~eplaut/configXEmacs.html
 
 
-			;;; Emacs is not a package manager, and here we load its package manager!
+;;; Emacs is not a package manager, and here we load its package manager!
 (require 'package)
 (dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
                   ("elpa" . "http://tromey.com/elpa/")
@@ -150,14 +150,16 @@
 ;;; Using smart tabs
 (setq-default tab-width 4) ; or any other preferred value
 (setq-default indent-tabs-mode t)
-(smart-tabs-insinuate 'c 'c++ 'javascript 'java 'cperl 'ruby 'python 'nxml)
+(smart-tabs-insinuate 'c 'c++ 'javascript 'java 'cperl 'ruby 'nxml)
 
 
+;; Python specific tab management
 (add-hook 'python-mode-hook
       (lambda ()
-        (setq indent-tabs-mode t)
+        (setq indent-tabs-mode nil)
         (setq tab-width 4)
-        (setq python-indent 4)))
+	(setq whitespace-style '(face tabs lines-tail trailing)) ; show tabs (use spaces instead)
+        (setq python-indent_offset 4)))
 
 
 
@@ -427,13 +429,18 @@
             (load-theme 'zenburn t)))
     (load-theme 'zenburn t))
 
+;; whitespace management
 ;; delete trailing spaces at save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; Change display when reaching the 80 columns edge
+(require 'whitespace)
+(setq whitespace-style '(face lines-tail trailing))
+(global-whitespace-mode t)
 
 ;; Evil mode
 (require 'evil)
 (evil-mode 1)
-(define-key evil-normal-state-map (kbd "<tab>") 'indent-for-tab-command)
+(define-key evil-normal-state-map (kbd "<tab>") 'indent-according-to-mode)
 
 ;; Custom undo commands
 (global-set-key (kbd "C-:")  'undo-tree-redo) ; also C-?
