@@ -294,6 +294,9 @@ exec --no-startup-id "i3-msg 'workspace 1'"
 # nm-applet to manage wifi
 exec --no-startup-id "nm-applet"
 
+# numlock on on startup
+exec --no-startup-id "numlockx on"
+
 ## media control management
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -321,7 +324,7 @@ exec --no-startup-id "ctrl-touchpad 1"
 
 set $mode_hwInput Manage hardware inputs (t) enable touchpad, (Shift+t) disable touchpad
 mode "$mode_hwInput" {
-    bindsym s exec --no-startup-id amixer set Capture toggle, mode "default"
+    bindsym m exec --no-startup-id amixer set Capture toggle, mode "default"
     bindsym t exec --no-startup-id ctrl-touchpad 0, mode "default"
     bindsym Shift+t exec --no-startup-id ctrl-touchpad 1, mode "default"
 

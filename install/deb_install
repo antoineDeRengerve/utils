@@ -4,7 +4,8 @@ sudo apt-get install tex-common tex-gyre texlive-base texlive-fonts-recommended-
 sudo apt-get install ttf-bitstream-vera ttf-dejavu ttf-dejavu-core ttf-dejavu-extra ttf-freefont ttf-lyx ttf-mscorefonts-installer ttf-wqy-microhei
 sudo apt-get install unetbootin unrar valgrind velocity wireshark zim ffmpeg ubuntu-restricted-extras xdotool libavcodec-extra nasm yasm libass-dev x264 x265 libx264-dev libfdk-aac-dev libmp3lame-dev libopus-dev libtheora-dev libvorbis-dev libvpx-dev libx265-dev
 # xbacklight allow to manage screen brightness
-sudo apt-get install xbacklight
+# numlockx: manage numlock
+sudo apt-get install xbacklight numlockx
 # TODO install external packages : xmind, master-pdf-editor, adobe-reader, ganttproject, team-viewer
 echo "DEBIAN PACKAGES INSTALL DONE"
 
