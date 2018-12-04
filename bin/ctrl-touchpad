@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Set touchpad enable
+
+if [[ "$1" == "" ]]
+then
+	echo "Missing input: disable=1 or enable=0"
+	exit 1
+fi
+
+# Sanitize input
+DISABLE=$1
+DISABLE=${1//[^01]/}
+DISABLE=${DISABLE:0:1}
+if [[ $DISABLE == "" ]]
+then
+	echo "Invalid input : $DISABLE"
+	echo "Valid: 0 (disable) or 1 (enable)"
+	exit 1
+fi
+
+synclient TouchpadOff=$DISABLE ;
+
+if [[ $DISABLE == "0" ]]
+then
+	echo "Enabled Touchpad"
+else
+	echo "Disabled Touchpad"
+fi
+
+
+
