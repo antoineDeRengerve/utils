@@ -41,6 +41,12 @@ i3-config:
 	mkdir -p ~/.config/i3
 	rsync ./config ~/.config/i3/config
 
+i3-status:
+	# i3status section
+	mkdir -p ~/.config/i3status
+	rsync ./i3status.conf ~/.config/i3status/config
+	
+
 i3-layout:
 	# i3-layout section
 	mkdir -p ~/.config/i3
