@@ -128,6 +128,12 @@ bindsym $mod+Shift+underscore move container to workspace 8; workspace 8
 bindsym $mod+Shift+ccedilla move container to workspace 9; workspace 9
 bindsym $mod+Shift+agrave move container to workspace 10; workspace 10
 
+# move workspace to another screen
+bindsym $mod+n move workspace to output left
+
+# move back and forth
+bindsym $mod+a workspace back_and_forth
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -222,14 +228,14 @@ bindsym $mod+Ctrl+e exec emacsclient -c
 bindsym $mod+Ctrl+n exec pcmanfm "`xcwd`"
 bindsym $mod+Ctrl+Shift+n exec pcmanfm
 bindsym $mod+Ctrl+mod1+l exec $Locker # lock screen
-bindsym --release $mod+Ctrl+p exec "scrot /tmp/screenshot.png ; xclip -selection clipboard -t image/png -i /tmp/screenshot.png ; mv /tmp/screenshot.png ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
-bindsym --release $mod+Ctrl+Shift+p exec "scrot -s /tmp/screenshot.png ; xclip -selection clipboard -t image/png -i /tmp/screenshot.png ; mv /tmp/screenshot.png ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
-bindsym --release Print exec "scrot /tmp/screenshot.png ; xclip -selection clipboard -t image/png -i /tmp/screenshot.png ; mv /tmp/screenshot.png ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
-bindsym --release Shift+Print exec "scrot -s /tmp/screenshot.png ; xclip -selection clipboard -t image/png -i /tmp/screenshot.png ; mv /tmp/screenshot.png ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png"
+bindsym --release $mod+Ctrl+p exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png -e 'xclip -selection clipboard -t image/png -i $f'"
+bindsym --release $mod+Ctrl+Shift+p exec "scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png -s -e 'xclip -selection clipboard -t image/png -i $f'"
+bindsym --release Print exec scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png -e 'xclip -selection clipboard -t image/png -i $f'
+bindsym --release Shift+Print exec scrot ~/Pictures/Screenshot_from_%Y-%m-%d_%H:%M:%S.png -s -e 'xclip -selection clipboard -t image/png -i $f'
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
-set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (V) VGA OFF, (H) HDMI OFF, (i) internal ON, (I) internal OFF, (l) LVDS OFF, (L) LVDS OFF
+set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (V) VGA OFF, (H) HDMI OFF, (i) internal ON, (I) internal OFF, (l) LVDS OFF, (L) LVDS OFF, (p) presentation (low qual), (P) presentation (full hd)
 mode "$mode_display" {
     bindsym v exec --no-startup-id xrandr --output VGA1 --auto, mode "default"
     bindsym h exec --no-startup-id xrandr --output HDMI1 --auto, mode "default"
@@ -245,6 +251,8 @@ mode "$mode_display" {
     bindsym Shift+L exec xrandr --output LVDS1 --off, mode "default"
     # specific presentation mode
     bindsym p exec xrandr --output HDMI1 --right-of eDP1 --mode 1024x768, mode "default"
+    # full HD presentation mode
+    bindsym Shift+p exec xrandr --output HDMI1 --right-of eDP1 --auto, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
