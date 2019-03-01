@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# stop emacs daemon
+systemctl --user stop emacs
+
+# Kill gui apps
+i3-msg [class="."] kill
+
+i3-nagbar -t warning -m 'Exiting now'
+
+# Power off
+poweroff
+
+
+

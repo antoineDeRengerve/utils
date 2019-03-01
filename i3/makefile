@@ -40,6 +40,7 @@ i3-config:
 	# i3-config section
 	mkdir -p ~/.config/i3
 	rsync ./config ~/.config/i3/config
+	sudo cp at_exit /usr/local/bin/
 
 i3-status:
 	# i3status section
