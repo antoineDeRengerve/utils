@@ -1,0 +1,23 @@
+
+
+
+# INSTALL
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# CHANGE SHELL
+
+chsh -s $(which zsh)
+
+
+# To get special fonts to display correctly
+
+sudo apt-get install fonts-powerline
+sudo apt-get install xfonts-terminus
+# Actually: font RobotMono is better looking
+
+Install manually RobotoMono font ? Should not be necessary (pb in letter spacing in urxvt config)
+
+
+in ~/.zshrc
+
+ZSH_THEME=agnoster

@@ -1,7 +1,7 @@
 ! Urxvt Settings
 
 URxvt*termName: rxvt-unicode
-URxvt*font: xft:Monospace:pixelsize=14: antialias=true
+URxvt*font: xft:RobotoMonoForPowerline-Regular:pixelsize=15:antialias=true
 URxvt*allow_bold: true
 URxvt*depth: 32
 ! Couleur d avant plan blanc
@@ -12,7 +12,7 @@ URxvt*background: black
 !! Font prefferenes
 !urxvt.font: xft:DejaVu Sans Mono:pixelsize=13
 !urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=13:weight=bold
-urxvt.letterSpace: -1
+!urxvt.letterSpace: -1 // Incompatible with agnoster theme for o-my-zsh
 URxvt.lineSpace: 1
 
 ! Pas de barre de défilement
