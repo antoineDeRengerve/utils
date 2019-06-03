@@ -17,7 +17,12 @@ sudo apt-get install xfonts-terminus
 
 Install manually RobotoMono font ? Should not be necessary (pb in letter spacing in urxvt config)
 
+# FASD install
+sudo add-apt-repository ppa:aacebedo/fasd
+sudo apt-get update
+sudo apt-get install fasd
 
 in ~/.zshrc
 
 ZSH_THEME=agnoster
+plugins=(git vi-mode fasd)

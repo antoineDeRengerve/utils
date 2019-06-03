@@ -19,7 +19,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar tmtxt/packages
-  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree))
+  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree fasd ))
 (dolist (p tmtxt/packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -46,6 +46,9 @@
  '(gnuserv-program (concat exec-directory "/gnuserv"))
  '(inhibit-startup-screen t)
  '(load-home-init-file t t)
+ '(package-selected-packages
+   (quote
+	(js2-mode zenburn-theme zenburn web-mode tern-auto-complete smart-tabs-mode neotree multi-web-mode markdown-preview-mode magit linum-relative js2-refactor help-fns+ helm evil ecb arduino-mode ac-js2)))
  '(pc-select-meta-moves-sexps t)
  '(pc-select-selection-keys-only t)
  '(pc-selection-mode t)
@@ -162,7 +165,7 @@
       (lambda ()
         (setq indent-tabs-mode nil)
         (setq tab-width 4)
-	(setq whitespace-style '(face tabs lines-tail trailing)) ; show tabs (use spaces instead)
+	(setq whitespace-style '(face lines-tail trailing)) ; show tabs (use spaces instead)
         (setq python-indent_offset 4)))
 
 
@@ -478,3 +481,8 @@
   (save-some-buffers)
   (kill-emacs)
   )
+
+;; Fasd configuration
+(global-set-key (kbd "C-c f") 'fasd-find-file)
+(global-fasd-mode 1)
+
