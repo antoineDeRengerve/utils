@@ -19,7 +19,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar tmtxt/packages
-  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree fasd ))
+  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree fasd flycheck json-mode flycheck-color-mode-line flycheck-pos-tip))
 (dolist (p tmtxt/packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -44,7 +44,9 @@
  '(delete-key-deletes-forward t)
  '(ecb-options-version "2.40")
  '(gnuserv-program (concat exec-directory "/gnuserv"))
- '(inhibit-startup-screen t)
+ '(inhibit-startup-screen t) 
+ '(js-chain-indent t)
+ '(js2-bounce-indent-p t)
  '(load-home-init-file t t)
  '(package-selected-packages
    (quote
@@ -157,6 +159,7 @@
 ;;; Using smart tabs
 (setq-default tab-width 4) ; or any other preferred value
 (setq-default indent-tabs-mode t)
+;;(smart-tabs-insinuate 'c 'c++ 'java 'cperl 'ruby 'nxml)
 (smart-tabs-insinuate 'c 'c++ 'javascript 'java 'cperl 'ruby 'nxml)
 
 
@@ -360,6 +363,9 @@
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 (setq js2-strict-missing-semi-warning nil)
 (setq js2-strict-trailing-comma-warning nil)
+;; Prevent indentation for multi line expressions
+;;(setq js-indent-level 1)
+
 
 ;; Configure imenu NOT WORKING
 (defun try-to-add-imenu ()
@@ -403,9 +409,16 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(setq web-mode-code-indent-offset 4)
-(setq web-mode-script-padding 4)
-(setq web-mode-style-padding 0)
+;; adjust indents for web-mode to 2 spaces
+(defun my-web-mode-hook ()
+  "Hooks for Web mode. Adjust indents"
+  ;;; http://web-mode.org/
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 4))
+  (setq web-mode-script-padding 4)
+  (setq web-mode-style-padding 0)
+(add-hook 'web-mode-hook  'my-web-mode-hook)
 
 ;; Window management
 ;(windmove-default-keybindings)
@@ -485,4 +498,40 @@
 ;; Fasd configuration
 (global-set-key (kbd "C-c f") 'fasd-find-file)
 (global-fasd-mode 1)
+
+;; http://www.flycheck.org/manual/latest/index.html
+(require 'flycheck)
+
+;; turn on flychecking globally
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; disable jshint since we prefer eslint checking
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(javascript-jshint)))
+
+;; use eslint with web-mode for jsx files
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+
+;; customize flycheck temp file prefix
+(setq-default flycheck-temp-prefix ".flycheck")
+
+;; disable json-jsonlist checking for json files
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(json-jsonlist)))
+
+;; Better display of error messages
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
+(eval-after-load "flycheck"
+  '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+
+;; for better jsx syntax-highlighting in web-mode
+;; - courtesy of Patrick @halbtuerke
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (if (equal web-mode-content-type "jsx")
+    (let ((web-mode-enable-part-face nil))
+      ad-do-it)
+    ad-do-it))
 
