@@ -455,6 +455,7 @@
 ;; Change display when reaching the 80 columns edge
 (require 'whitespace)
 (setq whitespace-style '(face lines-tail trailing))
+(setq whitespace-line-column 100) ;; limit line length
 (global-whitespace-mode t)
 
 ;; Evil mode
