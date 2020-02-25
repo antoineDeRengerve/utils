@@ -37,7 +37,7 @@ bindsym $mod+Shift+Return exec urxvt
 #bindsym $mod+Ctrl+Return exec xterm -e "cd `xcwd` && /bin/zsh"
 
 # kill focused window
-bindsym $mod+Shift+a kill
+bindsym $mod+Delete kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
