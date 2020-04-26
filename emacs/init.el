@@ -19,7 +19,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar tmtxt/packages
-  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree fasd flycheck json-mode flycheck-color-mode-line flycheck-pos-tip))
+  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree fasd flycheck json-mode flycheck-color-mode-line flycheck-pos-tip feature-mode))
 (dolist (p tmtxt/packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -44,7 +44,7 @@
  '(delete-key-deletes-forward t)
  '(ecb-options-version "2.40")
  '(gnuserv-program (concat exec-directory "/gnuserv"))
- '(inhibit-startup-screen t) 
+ '(inhibit-startup-screen t)
  '(js-chain-indent t)
  '(js2-bounce-indent-p t)
  '(load-home-init-file t t)
@@ -521,6 +521,7 @@
 (setq-default flycheck-disabled-checkers
   (append flycheck-disabled-checkers
     '(json-jsonlist)))
+;;(setq flycheck-eslint-args "--fix-dry-run")
 
 ;; Better display of error messages
 (with-eval-after-load 'flycheck
@@ -536,8 +537,8 @@
       ad-do-it)
     ad-do-it))
 
-;; searches the current files parent directories for the 
-;; node_modules/.bin/ directory and adds it to the buffer 
+;; searches the current files parent directories for the
+;; node_modules/.bin/ directory and adds it to the buffer
 ;; local exec-path
 (defun my/use-eslint-from-node-modules ()
   (let* ((root (locate-dominating-file
