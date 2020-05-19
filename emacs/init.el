@@ -1,6 +1,7 @@
 ;; Fichier .emacs exemple d'Emmanuel Plaut, téléchargeable sur
 ;; http://www.ensem.inpl-nancy.fr/~eplaut/configXEmacs.html
 
+(setq inhibit-startup-message t)    ;; Hide the startup message
 
 ;;; Emacs is not a package manager, and here we load its package manager!
 (require 'package)
@@ -19,7 +20,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar tmtxt/packages
-  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree fasd flycheck json-mode flycheck-color-mode-line flycheck-pos-tip feature-mode))
+  '(ispell js2-mode ac-js2 multi-web-mode web-mode smart-tabs-mode cedet arduino-mode zenburn-theme ecb tern tern-auto-complete js2-refactor imenu helm markdown-mode markdown-preview-mode evil linum-relative magit neotree fasd flycheck json-mode flycheck-color-mode-line flycheck-pos-tip feature-mode elpy pyenv-mode blacken prettier-js))
 (dolist (p tmtxt/packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -170,8 +171,7 @@
         (setq tab-width 4)
 	(setq whitespace-style '(face lines-tail trailing)) ; show tabs (use spaces instead)
         (setq python-indent_offset 4)))
-
-
+        (setq flycheck-python-pylint-executable "/usr/bin/pylint")
 
 ;; arduino-mode config
 ;(add-to-list 'auto-mode-alist '("\\.\\(pde\\|ino\\)$" . c++-mode))
@@ -500,6 +500,14 @@
 (global-set-key (kbd "C-c f") 'fasd-find-file)
 (global-fasd-mode 1)
 
+;; Enable elpy
+(elpy-enable)
+(setq elpy-rpc-virtualenv-path 'current)
+(add-hook 'elpy-mode-hook 'blacken-mode)
+ 
+;; Enable pyenv mode
+(pyenv-mode)  
+
 ;; http://www.flycheck.org/manual/latest/index.html
 (require 'flycheck)
 
@@ -552,3 +560,8 @@
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
 (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+

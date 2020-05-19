@@ -1,6 +1,5 @@
 [Unit]
 Description=Emacs: the extensible, self-documenting text editor
-After=default.target
 
 [Service]
 Type=forking
@@ -13,5 +12,3 @@ Restart=always
 # cloning and building all packages can take time
 TimeoutStartSec=0
 
-[Install]
-WantedBy=default.target
