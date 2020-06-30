@@ -198,7 +198,7 @@ new_window 1pixel
 # fenêtres flottantes:
 new_float normal
 
-set $Locker i3lock && sleep 1
+set $Locker i3lock -c 000000 && sleep 1
 
 
 #bindsym $mod+Ctrl+x exec shutdown -h now
