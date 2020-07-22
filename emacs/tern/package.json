@@ -17,7 +17,7 @@
     "acorn": "^3.2.0",
     "enhanced-resolve": "^2.2.2",
     "glob": "3",
-    "minimatch": "0.2",
+    "minimatch": "3.0",
     "resolve-from": "2.0.0"
   },
   "devDependencies": {
