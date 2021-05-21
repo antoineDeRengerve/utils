@@ -25,12 +25,11 @@
                        "x": 0,
                        "y": 0
                     },
-                    "name": "diya-env",
+                    "name": "term",
                     "percent": 0.5,
                     "swallows": [
                        {
-                          "class": "^URxvt$",
-                          "instance": "^gitlab$"
+                          "class": "^URxvt$"
                        }
                     ],
                     "type": "con"
@@ -45,12 +44,11 @@
                        "x": 0,
                        "y": 0
                     },
-                    "name": "diya-env",
+                    "name": "term",
                     "percent": 0.5,
                     "swallows": [
                        {
-                          "class": "^URxvt$",
-                          "instance": "^diya\\-env$"
+                          "class": "^URxvt$"
                        }
                     ],
                     "type": "con"

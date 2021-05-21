@@ -14,7 +14,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -288,12 +288,12 @@ exec --no-startup-id "feh --bg-fill ~/Pictures/orion_wp.jpg"
 exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/layouts/workspace-1.json'"
 exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/layouts/workspace-2.json'"
 exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/layouts/workspace-3.json'"
-exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/layouts/workspace-8.json'"
+#exec --no-startup-id "i3-msg 'workspace 8; append_layout ~/.config/i3/layouts/workspace-8.json'"
 exec --no-startup-id "i3-msg 'workspace 9; append_layout ~/.config/i3/layouts/workspace-9.json'"
-exec --no-startup-id "i3-msg 'workspace 10; append_layout ~/.config/i3/layouts/workspace-10.json'"
+#exec --no-startup-id "i3-msg 'workspace 10; append_layout ~/.config/i3/layouts/workspace-10.json'"
 
 # Launch applications on startup
-exec --no-startup-id "launch2"
+exec --no-startup-id "launch"
 
 exec --no-startup-id "i3-msg 'workspace 1'"
 
@@ -301,6 +301,9 @@ exec --no-startup-id "i3-msg 'workspace 1'"
 
 # nm-applet to manage wifi
 exec --no-startup-id "nm-applet"
+
+# battery applet with notifications
+exec --no-startup-id "cbatticon"
 
 # numlock on on startup
 exec --no-startup-id "numlockx on"
