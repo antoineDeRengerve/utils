@@ -24,7 +24,9 @@ brew install --cask amethyst
 
 # Installation
 
-Visual Studio Code : 
+## Visual Studio Code
+Installation extensions
+* python, intellisense, intellicode, eslint, ruby, C/C++, React, Docker, Prettier, vim, html/CSS, liveServer
 
 # Installation python, pyenv
 
