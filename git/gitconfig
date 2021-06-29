@@ -5,7 +5,7 @@
 	default = simple
 [core]
 	editor = vim
-	excludesfile = /home/antoroll/.gitignore_global
+	excludesfile = /Users/antoine/.gitignore_global
 [alias]
 	amend = commit --amend
 	st = status
@@ -22,3 +22,5 @@
 	unstage = reset HEAD -- 
 	diffmeld = difftool --tool=meld
 
+[pull]
+	rebase = false
