@@ -26,3 +26,10 @@ in ~/.zshrc
 
 ZSH_THEME=agnoster
 plugins=(git vi-mode fasd)
+
+brew install zsh-autosuggestions
+brew install zsh-syntax-highlighting
+
+# Add into .zshrc
+source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

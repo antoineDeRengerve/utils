@@ -1,0 +1,52 @@
+Installation du gestionnaire de paquets pour le développement
+
+https://brew.sh
+
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Installation system monitor : stats
+
+https://github.com/exelban/stats
+brew install --cask stats
+
+# Installation emacs-plus
+brew tap d12frosted/emacs-plus
+brew install emacs-plus@27 --with-spacemacs-icon
+--> en fait, finalement installation de VS Code.
+
+
+-> Follow indications
+
+# Installation amethyst : tiling windows
+brew install --cask amethyst
+
+
+# Installation
+
+Visual Studio Code : 
+
+# Installation python, pyenv
+
+# Configuration Joplin - 
+Activation de la répétition des touches
+defaults write net.cozic.joplin-desktop ApplePressAndHoldEnabled -bool false
+
+# Install zsh
+
+* https://inspirnathan.com/posts/22-install-ohmyzsh-with-agnoster-theme/
+* git clone https://github.com/powerline/fonts.git
+* iterm2 : color tango dark.
+* iterm2 : Source code pro for power tools font size 13pt.
+
+# Liste des programmes installés sur mac
+
+* joplin
+* libreoffice
+* syncthing
+* iterm2
+* ledger live
+* vlc
+* office
+
+
