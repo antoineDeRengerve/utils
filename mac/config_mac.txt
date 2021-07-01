@@ -28,6 +28,12 @@ brew install --cask amethyst
 Installation extensions
 * python, intellisense, intellicode, eslint, ruby, C/C++, React, Docker, Prettier, vim, html/CSS, liveServer
 
+# Configuration de mac
+Problème de touche meta non disponible. Dans l'idéal, ce serait bien de permettre un remap du code au niveau de mac ? Est possible ?
+En attendant, il est possible de simplement définir CAPS comme touche escape. Du coup, cela permet de réduire les mouvements par rapport à la touche escape par défaut.
+
+
+
 # Installation python, pyenv
 
 # Configuration Joplin - 
