@@ -56,5 +56,13 @@ defaults write net.cozic.joplin-desktop ApplePressAndHoldEnabled -bool false
 * ledger live
 * vlc
 * office
+* keeweb
+
+# Configuration mac
+* Possibility to show menu bar while in full sreen with macos monterey
 
 
+# Install other tools
+
+## nmap
+brew install nmap
