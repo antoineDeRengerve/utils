@@ -1,15 +1,13 @@
+# clearly makes git better
 [user]
-	name = antoine.derengerve
-	email = antoine.derengerve@gmail.com
-[push]
-	default = simple
-[core]
-	editor = vim
-	excludesfile = /Users/antoine/.gitignore_global
+	name = antoineDeRengerve
+	email = "antoine.derengerve@gmail.com "
 [alias]
 	amend = commit --amend
 	st = status
 	oneline = log --pretty=oneline --abbrev-commit --graph --decorate
+	o = log --pretty=oneline --abbrev-commit --graph --decorate
+	oo = !git -P log --pretty=oneline --abbrev-commit --graph --decorate preprod..HEAD
 	last = log -1 HEAD
 	co = checkout
 	ci = commit
@@ -17,18 +15,55 @@
 	brv = branch -vv
 	st = status
     	stt = diff --name-status
-	dic = diff --cached	
+	dic = diff --cached
 	diffstat = diff --stat
-	unstage = reset HEAD -- 
+	unstage = reset HEAD --
 	diffmeld = difftool --tool=meld
+	shas = "!f() { git log -n $1 --pretty=format:\"%h%n\" --abbrev=8 | tail -r | xargs; }; f"
 
-[pull]
-	rebase = false
+[column]
+        ui = auto
+[branch]
+        sort = -committerdate
+[tag]
+        sort = version:refname
+[init]
+        defaultBranch = main
 [diff]
-    tool = vscode
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
+[push]
+        default = simple
+        autoSetupRemote = true
+        followTags = true
+[fetch]
+        prune = true
+        pruneTags = true
+        all = true
+
+# why the hell not?
+
+[help]
+        autocorrect = prompt
+[commit]
+        verbose = true
+[rerere]
+        enabled = true
+        autoupdate = true
+[core]
+        excludesfile = ~/.gitignore
+        # fsmonitor = true
+        # untrackedCache = true
+[rebase]
+        autoSquash = true
+        autoStash = true
+        updateRefs = true
+
+# a matter of taste (uncomment if you dare)
+
 [merge]
-    tool = vscode
-[mergetool "vscode"]
-    cmd = code --wait $MERGED
+        conflictstyle = zdiff3 
+[pull]
+	rebase = true
